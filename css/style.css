@@ -1,0 +1,54 @@
+body {
+    padding-top: 60px;
+}
+
+/* Positionnement */
+.pad-right-20 {
+    padding-right: 20px;
+}
+
+.pad-top-20 {
+    padding-top: 20px;
+}
+
+.list-none {
+    list-style: none;
+}
+
+.pad-top-120 {
+    padding-top: 120px;
+}
+
+.pad-top-15 {
+    padding-top: 15px;
+}
+
+.dis-inline {
+    display: inline;
+}
+
+.pad-bot-20 {
+    padding-bottom: 20px;
+}
+
+.pad-bot-216 {
+    padding-bottom: 216px;
+}
+
+.pad-left-70 {
+    padding-left: 70px;
+}
+
+/* Légende d'une image */
+.containerImg {
+    position: relative;
+}
+
+.containerImg .captionImg {
+    position: absolute;
+    width: 100%;
+    font-size: 15px;
+    text-align: center;
+    top: 40%;
+    color: black;
+}
