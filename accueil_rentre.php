@@ -29,6 +29,17 @@ $movies = getDb()->query('select * from movie order by mov_id desc');
         </ul>
         </nav> 
         <section> 
+            <div class="container nav">
+                    <ul class="nav nav-tabs">
+                        <li role="presentation" class="active"><a href="accueil_rentre.php">Test de rentrée</a></li>
+                        <li role="presentation"><a href="accueil_premier.php">Premier Test</a></li>
+                        <li role="presentation"><a href="accueil_rentre.php">Continuité et limites</a></li>
+                        <li role="presentation"><a href="accueil_rentre.php">Suites</a></li>
+                        <li role="presentation"><a href="accueil_rentre.php">Integration</a></li>
+                        <li role="presentation"><a href="accueil_rentre.php">Matrice</a></li>
+                        <li role="presentation"><a href="accueil_rentre.php">Test de fin</a></li>
+                    </ul>
+                </div>
                 <!-- Lien vers la classe, transmission de l'ID de la classe -->
                     <div class="col-sm-4 portfolio-item text-center">
                         <a href="#" class="portfolio-link" data-toggle="modal">  
@@ -46,7 +57,7 @@ $movies = getDb()->query('select * from movie order by mov_id desc');
                             <div class="containerImg">
                                 <img src="images/fond1.jpg" class="img-responsive">
                                 <div class="captionImg">
-                                    <p align="left">Exercice 1</p>
+                                    <p align="left" glglyphicon="glglyphicon glyphicon-book">Exercice 1</p>
                                 </div>
                             </div>
                         </a>
