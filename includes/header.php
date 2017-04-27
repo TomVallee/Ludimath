@@ -3,7 +3,7 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/lasabliere/html/index.php">
+            <a class="navbar-brand" href="/ludimath/accueil_rentre.php">
                 <img class="img-responsive" alt="logo" src="/transdi/images/logo.png">
             </a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-target">
