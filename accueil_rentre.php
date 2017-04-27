@@ -41,28 +41,16 @@ $movies = getDb()->query('select * from movie order by mov_id desc');
                     </ul>
                 </div>
                 <!-- Lien vers la classe, transmission de l'ID de la classe -->
-                    <div class="col-sm-4 portfolio-item text-center">
-                        <a href="#" class="portfolio-link" data-toggle="modal">  
-                            <div class="containerImg">
-                                <img src="images/fond.jpg" class="img-responsive">
-                                <div class="captionImg">
-                                    <p align="center">Exercice 1</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div> 
-                <div align="left">
-                    <div class="col-sm-4 portfolio-item text-center">
-                        <a href="#" class="portfolio-link" data-toggle="modal">  
-                            <div class="containerImg">
-                                <img src="images/fond1.jpg" class="img-responsive">
-                                <div class="captionImg">
-                                    <p align="left" glglyphicon="glglyphicon glyphicon-book">Exercice 1</p>
-                                </div>
-                            </div>
+                    <div class="col-sm-4 portfolio-item text-center"> 
+                        <a href="#">
+                            <button class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span> Exercice 1 </button>
                         </a>
                     </div>
-                </div>
+                    <div class="col-sm-4 portfolio-item text-center"> 
+                        <a href="#">
+                            <button class="btn btn-warning"><span class="glyphicon glyphicon-ok-circle"></span> Exercice 2 </button>
+                        </a>
+                    </div> 
         </section>
     </div>
 
