@@ -1,10 +1,8 @@
 <?php
 require_once "includes/functions.php";
 session_start();
-
-// Retrieve all movies
-$movies = getDb()->query('select * from movie order by mov_id desc'); 
 ?>
+// Retrieve all movies
 
 <!doctype html>
 <html>

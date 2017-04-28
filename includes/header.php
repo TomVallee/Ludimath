@@ -11,7 +11,6 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-screenshot"></span> Défis</a>
             <a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-flag"></span> Equipe</a>
             <a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-book"></span> Cours</a>
         </div>
@@ -28,6 +27,7 @@
                             <span class="glyphicon glyphicon-user"></span> Bienvenue, <?= $_SESSION['login'] ?> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
+                            <li><a href="profil.php">Mon profil</a></li>
                             <li><a href="logout.php">Se déconnecter</a></li>
                         </ul>
                     </li>
