@@ -27,13 +27,16 @@ session_start();
         <section>
         <p style="text-align:center">Experience :  <img src="images/progression/progression.png"></p> 
         <hr>
-    </section>
-        <div classe="affiche">
+
+        <div class="div1">
             <h3>Mes derniers badges</h3>
             <img src="images/Badge.png">
         </div>
-        
-    
+        <div class="div1">
+            <h3>Mon meilleur score</h3>
+            <img src="images/Badge.png">
+        </div>
+        </section>
         
     </div>
 </body>

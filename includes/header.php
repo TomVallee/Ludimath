@@ -4,7 +4,7 @@
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="/ludimath/accueil_rentre.php">
-                <img class="img-responsive" alt="logo" src="/transdi/images/logo.png">
+                <img alt="logo" src="/Ludimath/images/inp.jpeg">
             </a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-target">
                 <span class="icon-bar"></span>
