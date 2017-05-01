@@ -25,9 +25,13 @@ session_start();
         </ul>
     </nav> 
         <section>
-        <p>Experience :  <img src="images/progression/progression.png"></p> 
+        <p style="text-align:center">Experience :  <img src="images/progression/progression.png"></p> 
         <hr>
     </section>
+        <div classe="affiche">
+            <h3>Mes derniers badges</h3>
+            <img src="images/Badge.png">
+        </div>
         
     
         
