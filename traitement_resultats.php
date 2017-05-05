@@ -18,6 +18,7 @@ if(!isset($_FILES['File']))
 }
 else
 {
+    //Enregistrement du fichier
      $erreur = true;
      $file_name = $_FILES['File']['name'];
      $file_size = $_FILES['File']['size'];
@@ -33,20 +34,16 @@ else
          move_uploaded_file($file_tmp, "resultats/" . $file_name);
     }
     
-    $files=scandir("resultats/");
-    echo isZip($files[2]);
-    $files=array_filter($files, "isZip");
-    print_r($files);
-    echo reset($files);
-    $sauvegarde=reset($files);
+    //Dézippage du fichier
+    $sauvegarde=glob("resultats/*.zip")[0];
     $zip=new ZipArchive;
-    if ($zip->open("resultats/".$sauvegarde) === TRUE) {
+    if ($zip->open($sauvegarde) === TRUE) {
             $zip->extractTo('resultats');
             $zip->close();
-            echo 'ok';
-            unlink("resultats/".$sauvegarde);
+        //Suppression du zip
+            unlink($sauvegarde);
+        //Suppression de tous les fichiers/dossiers inutiles
             $param=glob("resultats/class/*");
-            print_r($param);
             foreach ($param as $filename) {
                 if (is_file($filename)) {
                     unlink($filename);
@@ -56,11 +53,9 @@ else
                     recursiveRemoveDirectory($filename);
                 }
             }
+        //Suppression de tous les fichiers/dossiers inutiles en .xxx
             $param=glob("resultats/class/.*");
-            print_r($param);
-            unset($param[0]);
-            unset($param[1]);
-            print_r($param);
+            unset($param[0],$param[1]);
             foreach ($param as $filename) {
                 if (is_file($filename)) {
                     unlink($filename);
@@ -69,6 +64,22 @@ else
                 {
                     recursiveRemoveDirectory($filename);
                 }
+            }
+            unlink("resultats/class/score/supervisor");
+            $bin=glob("resultats/class/score/*.bin");
+            foreach($bin as $filename)
+            {
+                unlink($filename);
+            }
+            $eleves=glob("resultats/class/score/*");
+            foreach($eleves as $eleve)
+            {
+                $resultats=file($eleve);
+                foreach($resultats as $ligne)
+                {
+                    print_r(explode(" ",$ligne));
+                }
+                echo "<br/>";
             }
         } else {
             echo 'échec';

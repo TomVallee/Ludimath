@@ -34,11 +34,6 @@ function escape($value) {
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8', false);
 }
 
-//Retourne si le fichier est un .zip
-function isZip($file)
-{
-    return (strpos($file, '.zip') !== false);
-}
 //Supprimer un dossier et son contenu
 function recursiveRemoveDirectory($directory)
 {
