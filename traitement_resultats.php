@@ -75,9 +75,51 @@ else
             foreach($eleves as $eleve)
             {
                 $resultats=file($eleve);
+                $file=explode("/",$eleve);
+                $login=end($file);
+                echo $login."<br/>";
+                /*$query="SELECT utilisateur_id FROM user WHERE utilisateur_login=?";
+                $prepQuery=getDb()->prepare($query);
+                $prepQuery->execute(array($login));
+                $id=$prepQuery->fetch()["utilisateur_id"];
+                $query="SELECT * FROM notes WHERE utilisateur_id=? ORDER BY note_date DESC";
+                $prepQuery=getDb()->prepare($query);
+                $prepQuery->execute(array($id));
+                if($res=$prepQuery->fetch()){
+                    $dernierExo=$res([note_date]);
+                }
+                else{
+                    $dernierExo="0000-00-00";
+                }*/
+                $dernierExo=20170501;
+                $size=count($resultats);
+                for($i=0;$i<$size;$i++)
+                {
+                    $date=explode(" ",$resultats[$i])[0];
+                    $date=substr($date,0,4).substr($date,4,2).substr($date,6,2);
+                    if(intval($date)<=$dernierExo)
+                    {
+                        unset($resultats[$i]);
+                    }
+                }
                 foreach($resultats as $ligne)
                 {
-                    print_r(explode(" ",$ligne));
+                    $ligne=preg_replace('/\s+/', ' ',$ligne);
+                    $content=explode(" ",$ligne);
+                    $date=$content[0];
+                    $sheet=$content[2];
+                    $exo=$content[3];
+                    $type=$content[4];
+                    if($type=="score")
+                    {
+                        $score=$content[5];
+                    }
+                    echo "$date - $sheet - $exo - $type";
+                    if($type=="score")
+                    {
+                        echo " - $score";
+                    }
+                    echo "<br/>";
                 }
                 echo "<br/>";
             }
