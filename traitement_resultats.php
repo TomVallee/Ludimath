@@ -78,7 +78,7 @@ else
                 $file=explode("/",$eleve);
                 $login=end($file);
                 echo $login."<br/>";
-                /*$query="SELECT utilisateur_id FROM user WHERE utilisateur_login=?";
+                $query="SELECT utilisateur_id FROM user WHERE utilisateur_login=?";
                 $prepQuery=getDb()->prepare($query);
                 $prepQuery->execute(array($login));
                 $id=$prepQuery->fetch()["utilisateur_id"];
@@ -86,12 +86,12 @@ else
                 $prepQuery=getDb()->prepare($query);
                 $prepQuery->execute(array($id));
                 if($res=$prepQuery->fetch()){
-                    $dernierExo=$res([note_date]);
+                    $dernierExo=str_replace("-","",$res['note_date']);
                 }
                 else{
-                    $dernierExo="0000-00-00";
-                }*/
-                $dernierExo=20170501;
+                    $dernierExo=00000000;
+                }
+                echo $dernierExo."<br/>";
                 $size=count($resultats);
                 for($i=0;$i<$size;$i++)
                 {
