@@ -14,18 +14,39 @@ session_start();
         <div><h1 align="center"> Profil </h1></div>
         <h2>Noemie Guerin</h2>
         <hr>
-            <nav> 
-        <p>Classement général: </p>
+            <div class="div2"> 
+        <h4>Classement général: </h4>
             <ul>
-            <li> Tom Vallée </li>
-            <li> Tom Vallée </li>
-            <li> Tom Vallée </li>
-            <li> Tom Vallée </li>
-            <li> Tom Vallée </li>
+            <li> <?php 
+                $top = getDb() ->query('SELECT utilisateur_nom, utilisateur_prenom FROM user WHERE utilisateur_id = (SELECT `top_pre` FROM `top` WHERE `top_id` =0)');
+                $top=$top->fetch(); 
+                echo $top['utilisateur_nom'];echo  $top['utilisateur_prenom'];
+                ?></li>
+            <li> <?php 
+                $top = getDb() ->query('SELECT utilisateur_nom, utilisateur_prenom FROM user WHERE utilisateur_id = (SELECT `top_deux` FROM `top` WHERE `top_id` =0)');
+                $top=$top->fetch(); 
+                echo $top['utilisateur_nom'];echo  $top['utilisateur_prenom'];
+                ?></li>
+            <li> <?php 
+                $top = getDb() ->query('SELECT utilisateur_nom, utilisateur_prenom FROM user WHERE utilisateur_id = (SELECT `top_trois` FROM `top` WHERE `top_id` =0)');
+                $top=$top->fetch(); 
+                echo $top['utilisateur_nom'];echo  $top['utilisateur_prenom'];
+                ?></li>
+            <li> <?php 
+                $top = getDb() ->query('SELECT utilisateur_nom, utilisateur_prenom FROM user WHERE utilisateur_id = (SELECT `top_quat` FROM `top` WHERE `top_id` =0)');
+                $top=$top->fetch(); 
+                echo $top['utilisateur_nom'];
+                echo  $top['utilisateur_prenom'];
+                ?></li>
+            <li> <?php 
+                $top = getDb() ->query('SELECT utilisateur_nom, utilisateur_prenom FROM user WHERE utilisateur_id = (SELECT `top_cinq` FROM `top` WHERE `top_id` =0)');
+                $top=$top->fetch(); 
+                echo $top['utilisateur_nom'];echo  $top['utilisateur_prenom'];
+                ?></li>
         </ul>
-    </nav> 
+        </div> 
         <section>
-        <p style="text-align:center">Experience :  <img src="images/progression/progression.png"></p> 
+        <p style="text-align:center">Experience :  <img src="images/progression/25%25.png"></p> 
         <hr>
 
         <div class="div1">

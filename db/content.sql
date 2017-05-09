@@ -38,6 +38,16 @@ insert into top values
 (0,"Général",5,4,1,3,2);
 insert into top values
 (1,"Continuité et limites",5,1,3,2,4);
+insert into top values
+(2,"Suite",5,4,1,2,3);
+insert into top values
+(3,"Intergration",5,4,3,2,1);
+insert into top values
+(4,"Matrice",5,2,1,4,3);
+
+
+
+
 
 insert into succes values
 (null,"Mes premiers pas sur Ludimath",2,"Atteindre le niveau 2");
