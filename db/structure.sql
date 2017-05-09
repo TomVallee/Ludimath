@@ -81,11 +81,12 @@ create table theme (
 )engine=innodb character set utf8 collate utf8_unicode_ci;
 
 create table exercice (
-    exercice_id integer not null primary key auto_increment,
+    exercice_id integer not null auto_increment,
     exercice_nom varchar(100),
     exercice_desc varchar(255),
     exercice_url varchar(255),
     theme_id integer,
+    primary key (exercice_id,theme_id),
     foreign key (theme_id) references theme(theme_id) on delete cascade
 )engine=innodb character set utf8 collate utf8_unicode_ci;
 
