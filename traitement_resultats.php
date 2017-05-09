@@ -81,23 +81,25 @@ else
                 $query="SELECT utilisateur_id FROM user WHERE utilisateur_login=?";
                 $prepQuery=getDb()->prepare($query);
                 $prepQuery->execute(array($login));
-                $id=$prepQuery->fetch()["utilisateur_id"];
+                $etudId=$prepQuery->fetch()["utilisateur_id"];
                 $query="SELECT * FROM notes WHERE utilisateur_id=? ORDER BY note_date DESC";
                 $prepQuery=getDb()->prepare($query);
-                $prepQuery->execute(array($id));
+                $prepQuery->execute(array($etudId));
                 if($res=$prepQuery->fetch()){
                     $dernierExo=str_replace("-","",$res['note_date']);
+                    $dernierExo=str_replace(" ","",$dernierExo);
+                    $dernierExo=str_replace(":","",$dernierExo);
                 }
                 else{
-                    $dernierExo=00000000;
+                    $dernierExo=0;
                 }
-                echo $dernierExo."<br/>";
                 $size=count($resultats);
                 for($i=0;$i<$size;$i++)
                 {
-                    $date=explode(" ",$resultats[$i])[0];
-                    $date=substr($date,0,4).substr($date,4,2).substr($date,6,2);
-                    if(intval($date)<=$dernierExo)
+                    $datetime=explode(" ",$resultats[$i])[0];
+                    $datetime=str_replace(".","",$datetime);
+                    $datetime=str_replace(":","",$datetime);
+                    if(floatval($datetime)<=$dernierExo)
                     {
                         unset($resultats[$i]);
                     }
@@ -106,15 +108,32 @@ else
                 {
                     $ligne=preg_replace('/\s+/', ' ',$ligne);
                     $content=explode(" ",$ligne);
-                    $date=$content[0];
+                    $datetime=$content[0];
+                    $datetime=str_replace("."," ",$datetime);
+                    $datetime=str_replace(substr($datetime,0,6),substr($datetime,0,6)."-",$datetime);
+                    $datetime=str_replace(substr($datetime,0,4),substr($datetime,0,4)."-",$datetime);
+                    echo $datetime;
                     $sheet=$content[2];
                     $exo=$content[3];
                     $type=$content[4];
                     if($type=="score")
                     {
                         $score=$content[5];
+                        $query="SELECT exercice_id FROM exercice WHERE theme_id=? AND exercice_num=?";
+                        $prepQuery=getDb()->prepare($query);
+                        $prepQuery->execute(array($sheet,$exo));
+                        $exoId=$prepQuery->fetch()["exercice_id"];
+                        
+                        
+                        $query="INSERT INTO notes VALUES (null,:date,:score,:idexo,:iduser)";
+                        $prepQuery=getDb()->prepare($query);
+                        $prepQuery->bindValue("date",$datetime);
+                        $prepQuery->bindValue("score",$score);
+                        $prepQuery->bindValue("idexo",$exoId);
+                        $prepQuery->bindValue("iduser",$etudId);
+                        $prepQuery->execute();
                     }
-                    echo "$date - $sheet - $exo - $type";
+                    echo "$datetime - $sheet - $exo - $type";
                     if($type=="score")
                     {
                         echo " - $score";
