@@ -61,20 +61,17 @@ div.affiche{
 width:150px; 
 height:80px; 
 display:inline-block; 
-border: 1px solid black; 
 text-align:center; 
 } 
 .div2 { 
 width:150px; 
 height:180px; 
 display:inline-block; 
-border: 1px solid black;
 text-align:center; 
 } 
 .sec3 { 
 width:780px; 
 height:80px; 
-border: 1px solid black;
 display:inline-block; 
 text-align:center; 
 } 

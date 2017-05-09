@@ -2,9 +2,9 @@ drop table if exists notes;
 drop table if exists reussisucces;
 drop table if exists exercice;
 drop table if exists theme;
+drop table if exists top;
 drop table if exists user;
 drop table if exists niveau;
-drop table if exists top;
 drop table if exists equipe;
 drop table if exists succes;
 drop table if exists badge;
@@ -20,9 +20,7 @@ create table succes (
     succes_id integer not null primary key auto_increment,
     succes_titre varchar(100),
     succes_cache integer,
-    succes_cond varchar (255),
-    badge_id integer,
-    foreign key (badge_id) references badge(badge_id) on delete cascade
+    succes_cond varchar(255)
 )engine=innodb character set utf8 collate utf8_unicode_ci;
 
 create table equipe (
@@ -83,11 +81,12 @@ create table theme (
 )engine=innodb character set utf8 collate utf8_unicode_ci;
 
 create table exercice (
-    exercice_id integer not null primary key auto_increment,
+    exercice_id integer not null auto_increment,
     exercice_nom varchar(100),
     exercice_desc varchar(255),
     exercice_url varchar(255),
     theme_id integer,
+    primary key (exercice_id,theme_id),
     foreign key (theme_id) references theme(theme_id) on delete cascade
 )engine=innodb character set utf8 collate utf8_unicode_ci;
 

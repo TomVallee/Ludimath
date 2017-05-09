@@ -23,13 +23,13 @@ try{
 }
 
 //contenu
-/*try{
+try{
     $sql=file_get_contents("content.sql");
     getDB()->exec($sql);
     echo "Succes Contenu; ";
 } catch (Exception $ex) {
     die("Erreur fatale :" . $ex->getMessage());
-}*/
+}
 
 
 ?>

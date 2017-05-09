@@ -14,7 +14,7 @@ session_start();
         <?php require_once "includes/header.php"; ?>
         <div><h1 align="center"> Mission Hebdomadaire </h1></div>
         <hr>
-        <p>Realiser 20 exercices sur les Complexes ; </p>
+        <p>Realiser 20 exercices sur les Complexes :  <img src="images/progression/progression.png"></p> 
         <hr>
         <div class="div2"> 
         <p>Classement général: </p>
@@ -52,6 +52,11 @@ session_start();
                     <div class="div1"> 
                         <a href="#">
                             <button class="btn btn-warning"><span class="glyphicon glyphicon-ok-circle"></span> Exercice 3 </button>
+                        </a>
+                    </div> 
+                    <div class="div1"> 
+                        <a href="#">
+                            <button class="btn btn-warning"><span class="glyphicon glyphicon-ok-circle"></span> Exercice 4 </button>
                         </a>
                     </div> 
         </section>

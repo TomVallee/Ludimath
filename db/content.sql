@@ -1,9 +1,61 @@
-insert into movie values
-(1, "Le Loup de Wall Street", "Le Loup de Wall Street (The Wolf of Wall Street) est un film américain réalisé par Martin Scorsese sorti en 2013. Adaptation de l'autobiographie éponyme de Jordan Belfort, il s'agit du plus gros succès commercial de Martin Scorsese.", "Le Loup de Wall Street (The Wolf of Wall Street) est un film américain réalisé par Martin Scorsese sorti en 2013. Inspiré d'une histoire réelle, il raconte l'ascension d'un courtier en bourse, Jordan Belfort interprété par Leonardo DiCaprio, vers la gloire, la fortune et les malversations au cœur des années 1980, le menant à la chute et à une forme de rédemption. Adaptation de l'autobiographie éponyme de Jordan Belfort, il s'agit du plus gros succès commercial de Martin Scorsese.", "Martin Scorsese", 2013, "loup.jpg");
-insert into movie values
-(2, "Vice-Versa", "Vice-versa ou Sens dessus dessous au Québec (Inside Out) est le 133e long-métrage d'animation des studios Disney et le 15e long-métrage de Pixar. Réalisé en images de synthèse par Pete Docter et Ronnie del Carmen, il est sorti en 2015.", "Vice-versa ou Sens dessus dessous au Québec (Inside Out) est le 133e long-métrage d'animation des studios Disney et le 15e long-métrage de Pixar. Réalisé en images de synthèse par Pete Docter et Ronnie del Carmen, il est sorti en 2015.", "Pete Docter", 2015, "vice-versa.jpg");
-insert into movie values
-(3, "Babysitting", "Babysitting est un film français réalisé par Philippe Lacheau et Nicolas Benamou, sorti en 2014. Il s'agit du premier film interprété par une grande partie de La Bande à Fifi, troupe révélée par Canal+. C'est le premier film français à allier prises de vues traditionnelles et found footage, à l'image de Projet X.", "Babysitting est un film français réalisé par Philippe Lacheau et Nicolas Benamou, sorti en 2014. Il s'agit du premier film interprété par une grande partie de La Bande à Fifi, troupe révélée par Canal+. C'est le premier film français à allier prises de vues traditionnelles et found footage, à l'image de Projet X.", "Philippe Lacheau et Nicolas Benamou", 2013, "babysitting.jpg");
+insert into equipe values
+(null,0,"LesBleus");
+
+insert into niveau values
+(null,15);
+insert into niveau values
+(null,25);
+insert into niveau values
+(null,40);
+insert into niveau values
+(null,60);
+insert into niveau values
+(null,80);
+insert into niveau values
+(null,100);
+insert into niveau values
+(null,125);
+insert into niveau values
+(null,150);
+insert into niveau values
+(null,200);
+insert into niveau values
+(null,300);
 
 insert into user values
-(1, "paul", "ochon");
+(null, "Bazin", "Tom","tbazin","tbazin",10,1,1);
+insert into user values
+(null, "Vallee", "Tom","tvallee","tvallee",10,1,1);
+insert into user values
+(null, "Hazard", "Sylvain","shazard","shazard",10,1,1);
+insert into user values
+(null, "Guerin", "Noemie","nguerin","nguerin",10,1,1);
+insert into user values
+(null, "Saracco", "Jerome","jsaracco","jsaracco",80,8,1);
+
+
+insert into top values 
+(0,"Général",5,4,1,3,2);
+insert into top values
+(1,"Continuité et limites",5,1,3,2,4);
+
+insert into succes values
+(null,"Mes premiers pas sur Ludimath",2,"Atteindre le niveau 2");
+insert into succes values
+(null,"Best of Ludimath",2,"Atteindre le niveau 10");
+insert into succes values
+(null,"MVP",2,"Atteindre le niveau 20");
+insert into succes values
+(null,"Dans la cour des grands",0,"Entrer dans le top général");
+insert into succes values
+(null,"Au top",0,"Être dans le top général 3 jours de suite");
+insert into succes values
+(null,"Toujours là",0,"Être dans le top général 5 jours de suite");
+insert into succes values
+(null,"Premier de la classe",0,"Être premier du top général");
+insert into succes values
+(null,"J'y suis, j'y reste",0,"Être premier du top général 3 jours de suite");
+insert into succes values
+(null,"Indétrônable",0,"Être premier du top général 5 jours de suite");
+insert into succes values
+(null,"On top of the World",0,"Être premier du top général 10 jours de suite");
