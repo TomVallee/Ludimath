@@ -43,6 +43,7 @@ create table user (
     utilisateur_experience integer not null,
     utilisateur_niveau integer,
     equipe_id integer,
+    badge_id integer,
     foreign key (utilisateur_niveau) references niveau(niveau_id) on delete cascade,
     foreign key (equipe_id) references equipe(equipe_id) on delete cascade
 )engine=innodb character set utf8 collate utf8_unicode_ci;

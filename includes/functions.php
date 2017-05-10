@@ -32,6 +32,77 @@ function redirect($url) {
 function escape($value) {
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8', false);
 }
+//affiche le contenu d'un succes
+function afficheContenuSucces($id)
+{    
+    $query="SELECT * FROM succes WHERE succes_id=?";
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($id));
+    $res=$prepQuery->fetch();
+    $titre=$res['succes_titre'];
+    $cond=$res['succes_cond'];
+    $query="SELECT * FROM badge WHERE badge_id=?";
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($id));
+    $res=$prepQuery->fetch();
+    $badge=$res['badge_icone'];
+    echo"
+    <div class ='row'>
+    <img src='images/badges/".$badge."' height='70' width='70' >
+    <strong>".$titre."</strong></br>
+    </div>
+    <div class='row'>".$cond."</div>";   
+}
+
+//affiche les succes non obtenus et cachés
+function afficheSuccesNonObtenu($id){
+    $query="SELECT * FROM succes WHERE succes_id=?";
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($id));
+    $res=$prepQuery->fetch();
+    $titre=$res['succes_titre'];
+    $cond=$res['succes_cond'];
+    $cache=$res['succes_cache'];
+    if($cache)
+    {
+        echo'<div class="successombre"> ';
+        echo"
+        <div class ='row'>
+        <img src='images/badges/secret.png' height='70' width='70' >
+        <strong>".$titre."</strong></br>
+        </div>
+        <div class='row'>Ce succès est secret</div>";   
+        echo'</div>';
+    }
+    else{
+        echo'<div class="successombre"> ';
+        afficheContenuSucces($id);        
+        echo'</div>';
+    }    
+}
+
+//affiche les succes du joueur
+function afficheSucces($utilisateur_id){
+    $query ="Select succes_id from reussisucces where utilisateur_id=?";
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($utilisateur_id));
+    
+    foreach($prepQuery as $id){
+        echo'<div class="succes"> ';
+        afficheContenuSucces($id['succes_id']);        
+        echo'</div>';
+        echo'</br>';
+        }
+        
+    $query ="SELECT succes_id,succes_cache FROM succes WHERE succes_id NOT IN (SELECT succes_id from reussisucces where utilisateur_id=1) Order By succes_cache";
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($utilisateur_id));
+    foreach($prepQuery as $id){
+        afficheSuccesNonObtenu($id['succes_id']);  
+        echo'</br>';
+        }
+    
+}
 
 //Supprimer un dossier et son contenu
 function recursiveRemoveDirectory($directory)

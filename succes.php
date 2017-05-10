@@ -1,7 +1,7 @@
 <?php
 require_once "includes/functions.php";
 session_start();
-
+$query= getDb()->query("SELECT succes_id FROM succes");
 ?>
 
 <!doctype html>
@@ -13,7 +13,10 @@ session_start();
     <div class="container">
         <?php require_once "includes/header.php"; ?>
         
-        <img src="images/badges/ChampionLudimath.png" height="50" width="50"  >
+            <?php
+            afficheSucces((1));
+        
+        ?>
     </div>
 </body>
         
