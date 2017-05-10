@@ -15,6 +15,7 @@
             <a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-flag"></span> Equipe</a>
             <a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-book"></span> Cours</a>
             <a class="navbar-brand" href="accueil_rentre.php"><span class="glyphicon glyphicon-book"></span> Exercice</a>
+            <a class="navbar-brand" href="succes.php"><span class="glyphicon glyphicon-lock"></span> Succes </a>
             <?php } ?>
             
         </div>
