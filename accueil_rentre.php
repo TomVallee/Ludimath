@@ -13,9 +13,7 @@ $top=$top->fetch();
 <body>
     <div class="container">
         <?php require_once "includes/header.php"; ?>
-        <div><h1 align="center"> Mission Hebdomadaire </h1></div>
-        <hr>
-        <p>Realiser 20 exercices sur les Complexes :  <img src="images/progression/50%25.png"></p> 
+        <div><h1 align="center"> Ludimath</h1></div>
         <hr>
         <div class="div2"> 
         <h4>Classement général: </h4>
@@ -23,28 +21,27 @@ $top=$top->fetch();
             <li> <?php 
                 $top = getDb() ->query('SELECT utilisateur_nom, utilisateur_prenom FROM user WHERE utilisateur_id = (SELECT `top_pre` FROM `top` WHERE `top_id` =0)');
                 $top=$top->fetch(); 
-                echo $top['utilisateur_nom'];echo  $top['utilisateur_prenom'];
+                echo $top['utilisateur_nom'].' '.$top['utilisateur_prenom'];
                 ?></li>
             <li> <?php 
                 $top = getDb() ->query('SELECT utilisateur_nom, utilisateur_prenom FROM user WHERE utilisateur_id = (SELECT `top_deux` FROM `top` WHERE `top_id` =0)');
                 $top=$top->fetch(); 
-                echo $top['utilisateur_nom'];echo  $top['utilisateur_prenom'];
+                echo $top['utilisateur_nom'].' '.$top['utilisateur_prenom'];
                 ?></li>
             <li> <?php 
                 $top = getDb() ->query('SELECT utilisateur_nom, utilisateur_prenom FROM user WHERE utilisateur_id = (SELECT `top_trois` FROM `top` WHERE `top_id` =0)');
                 $top=$top->fetch(); 
-                echo $top['utilisateur_nom'];echo  $top['utilisateur_prenom'];
+                echo $top['utilisateur_nom'].' '.$top['utilisateur_prenom'];
                 ?></li>
             <li> <?php 
                 $top = getDb() ->query('SELECT utilisateur_nom, utilisateur_prenom FROM user WHERE utilisateur_id = (SELECT `top_quat` FROM `top` WHERE `top_id` =0)');
                 $top=$top->fetch(); 
-                echo $top['utilisateur_nom'];
-                echo  $top['utilisateur_prenom'];
+                echo $top['utilisateur_nom'].' '.$top['utilisateur_prenom'];
                 ?></li>
             <li> <?php 
                 $top = getDb() ->query('SELECT utilisateur_nom, utilisateur_prenom FROM user WHERE utilisateur_id = (SELECT `top_cinq` FROM `top` WHERE `top_id` =0)');
                 $top=$top->fetch(); 
-                echo $top['utilisateur_nom'];echo  $top['utilisateur_prenom'];
+                echo $top['utilisateur_nom'].' '.$top['utilisateur_prenom'];
                 ?></li>
         </ul>
         </div> 
@@ -60,6 +57,7 @@ $top=$top->fetch();
                         <li role="presentation"><a href="accueil_rentre.php">Test de fin</a></li>
                     </ul>
                 </div>
+            <div><p> </p></div>
                 <!-- Lien vers la classe, transmission de l'ID de la classe -->
 <div class="div1"> 
                         <a href="#">

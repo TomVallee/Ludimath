@@ -5,12 +5,14 @@ session_start();
 if (!empty($_POST['login']) and !empty($_POST['password'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
-    $stmt = getDb()->prepare('select * from user where usr_login=? and usr_password=?');
+    $stmt = getDb()->prepare('select * from user where utilisateur_login=? and utilisateur_mdp=?');
     $stmt->execute(array($login, $password));
     if ($stmt->rowCount() == 1) {
         // Authentication successful
+        $user = $stmt->fetch();
         $_SESSION['login'] = $login;
-        redirect("index.php");
+        $_SESSION['id'] = $user['utilisateur_id'];
+        redirect("accueil_rentre.php");
     }
     else {
         $error = "Utilisateur non reconnu";
@@ -57,28 +59,18 @@ require_once "includes/head.php";
                 </div>
             </form>
         </div>
-
-        <?php require_once "includes/footer.php"; ?>
     </div>
-
+    <?php require_once "includes/footer.php"; ?>
     <?php require_once "includes/scripts.php"; ?>
 </body>
 
 </html>
-
 <?php 
-require("../../includes/head.php");
-require("../../includes/functions.php");
+require("includes/head.php");
 ?>
 <head>
-<?php
-/*require("../../includes/navigation.php");*/
-?>
 </head>
 <?php
-session_start();
-// Hachage du mot de passe
-/*$pass_hache = sha1($_POST['pass']);*/
 // Vérification des identifiants
 if (array_key_exists('login', $_POST)&& array_key_exists('mdp', $_POST))
 {
@@ -86,11 +78,11 @@ if (array_key_exists('login', $_POST)&& array_key_exists('mdp', $_POST))
     $mdp= $_POST['mdp'];
     if ($_POST['poste']=='eleve')
     {
-        $MaRequete1='SELECT eleve_login, eleve_mdp FROM eleve' ;
+        $MaRequete1='SELECT utilisateur_login, utilisateur_mdp FROM user' ;
         $monrs=getDb()->query($MaRequete1);
         if($tuple = $monrs->fetch())
         {
-            if ($login==$tuple['eleve_login'] && $mdp==$tuple['eleve_mdp'])
+            if ($login==$tuple['utilisateur_login'] && $mdp==$tuple['utilisateur_mdp'])
             {
                 ?>
                 <h1>"Vous etes connecté"</h1>
@@ -101,10 +93,6 @@ if (array_key_exists('login', $_POST)&& array_key_exists('mdp', $_POST))
                 <h1>"Vous etes connecté"</h1>
                 <h1>"Vous etes connecté"</h1>
                 <h1>"Vous etes connecté"</h1>
-                <?php
-                $connect=1;
-                echo $_POST['poste'];
-                ?>
             }
             else
             {
@@ -115,46 +103,10 @@ if (array_key_exists('login', $_POST)&& array_key_exists('mdp', $_POST))
                 <h1>"Vous vous etes trompé d'identifiant ou de mot de passe"</h1>
                 <h1>"Vous vous etes trompé d'identifiant ou de mot de passe"</h1>
                 <?php
-                /*require("connection.php");*/
-            }
-        }
-    }
-    else 
-    {
-        $MaRequete1='SELECT enseign_login, enseign_mdp FROM enseignant' ;
-        $monrs=getDb()->query($MaRequete1);
-        if($tuple = $monrs->fetch())
-        {
-            echo $tuple['enseign_login'];
-            if ($login==$tuple['enseign_login'] && $mdp==$tuple['enseign_mdp'])
-            {
-                ?>
-                <h1>"Vous etes connecté"</h1>
-                <h1>"Vous etes connecté"</h1>
-                <h1>"Vous etes connecté"</h1>
-                <h1>"Vous etes connecté"</h1>
-                <h1>"Vous etes connecté"</h1>
-                <h1>"Vous etes connecté"</h1>
-                <h1>"Vous etes connecté"</h1>
-                <h1>"Vous etes connecté"</h1>
-                <?php
-                $connect=1;
-                echo $_POST['poste'];
-                ?>
-            }
-            else
-            {
-                ?>
-                <h1>"Vous vous etes trompé d'identifiant ou de mot de passe"</h1>
-                <h1>"Vous vous etes trompé d'identifiant ou de mot de passe"</h1>
-                <h1>"Vous vous etes trompé d'identifiant ou de mot de passe"</h1>
-                <h1>"Vous vous etes trompé d'identifiant ou de mot de passe"</h1>
-                <h1>"Vous vous etes trompé d'identifiant ou de mot de passe"</h1>
-                <?php
-                /*require("connection.php");*/
             }
         }
     }
 }
 /*require("../../includes/footer.php");*/
 ?>
+

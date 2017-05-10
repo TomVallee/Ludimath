@@ -59,20 +59,24 @@ div.affiche{
 
 .div1 { 
 width:150px; 
-height:150px; 
+height:200px; 
 border:1px;
 display:inline-block; 
 text-align:center; 
+vertical-align:middle;
 } 
 .div2 { 
 width:180px; 
 height:180px; 
 display:inline-block; 
+border: 1px solid black;
 text-align:center; 
+vertical-align:middle;
 } 
 .sec3 { 
 width:780px; 
-height:500px; 
+height:200px; 
 display:inline-block; 
 text-align:center; 
+vertical-align:middle
 } 

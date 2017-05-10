@@ -11,15 +11,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <?php if (isUserConnected()) { ?>
             <a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-flag"></span> Equipe</a>
             <a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-book"></span> Cours</a>
+            <a class="navbar-brand" href="accueil_rentre.php"><span class="glyphicon glyphicon-book"></span> Exercice</a>
+            <?php } ?>
+            
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse-target">
-            <?php if (isUserConnected()) { ?>
-                <ul class="nav navbar-nav">
-                    <li><a href="movie_add.php">Ajouter un film</a></li>
-                </ul>
-            <?php } ?>
+
             <ul class="nav navbar-nav navbar-right">
                 <?php if (isUserConnected()) { ?>
                     <li class="dropdown">

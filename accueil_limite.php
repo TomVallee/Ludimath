@@ -11,9 +11,7 @@ session_start();
 <body>
     <div class="container">
         <?php require_once "includes/header.php"; ?>
-        <div><h1 align="center"> Mission Hebdomadaire </h1></div>
-        <hr>
-        <p>Realiser 20 exercices sur les Complexes :  <img src="images/progression/50%25.png"></p> 
+        <div><h1 align="center"> Ludimath</h1></div>
         <hr>
         <div class="div2"> 
         <h4>Classement Limite et Continuité: </h4>
@@ -21,28 +19,27 @@ session_start();
             <li> <?php 
                 $top = getDb() ->query('SELECT utilisateur_nom, utilisateur_prenom FROM user WHERE utilisateur_id = (SELECT `top_pre` FROM `top` WHERE `top_id` =1)');
                 $top=$top->fetch(); 
-                echo $top['utilisateur_nom'];echo  $top['utilisateur_prenom'];
+                echo $top['utilisateur_nom'].' '.$top['utilisateur_prenom'];
                 ?></li>
             <li> <?php 
                 $top = getDb() ->query('SELECT utilisateur_nom, utilisateur_prenom FROM user WHERE utilisateur_id = (SELECT `top_deux` FROM `top` WHERE `top_id` =1)');
                 $top=$top->fetch(); 
-                echo $top['utilisateur_nom'];echo  $top['utilisateur_prenom'];
+                echo $top['utilisateur_nom'].' '.$top['utilisateur_prenom'];
                 ?></li>
             <li> <?php 
                 $top = getDb() ->query('SELECT utilisateur_nom, utilisateur_prenom FROM user WHERE utilisateur_id = (SELECT `top_trois` FROM `top` WHERE `top_id` =1)');
                 $top=$top->fetch(); 
-                echo $top['utilisateur_nom'];echo  $top['utilisateur_prenom'];
+                echo $top['utilisateur_nom'].' '.$top['utilisateur_prenom'];
                 ?></li>
             <li> <?php 
                 $top = getDb() ->query('SELECT utilisateur_nom, utilisateur_prenom FROM user WHERE utilisateur_id = (SELECT `top_quat` FROM `top` WHERE `top_id` =1)');
                 $top=$top->fetch(); 
-                echo $top['utilisateur_nom'];
-                echo  $top['utilisateur_prenom'];
+                echo $top['utilisateur_nom'].' '.$top['utilisateur_prenom'];
                 ?></li>
             <li> <?php 
                 $top = getDb() ->query('SELECT utilisateur_nom, utilisateur_prenom FROM user WHERE utilisateur_id = (SELECT `top_cinq` FROM `top` WHERE `top_id` =1)');
                 $top=$top->fetch(); 
-                echo $top['utilisateur_nom'];echo  $top['utilisateur_prenom'];
+                echo $top['utilisateur_nom'].' '.$top['utilisateur_prenom'];
                 ?></li>
         </ul>
         </div> 
