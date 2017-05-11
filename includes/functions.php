@@ -32,6 +32,15 @@ function redirect($url) {
 function escape($value) {
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8', false);
 }
+
+//dit si l'user a réussi le succès
+function aSucces($succesId,$userId){
+    $prepQuery="SELECT count(*) from reussisucces WHERE utilisateur_id = ".$userId." and succes_id=".$succesId;
+        $res= getDb()->query($prepQuery);        
+            $count=$res->fetch(); 
+        return $count['count(*)'];
+}
+
 //affiche le contenu d'un succes
 function afficheContenuSucces($id)
 {    
@@ -102,6 +111,33 @@ function afficheSucces($utilisateur_id){
         echo'</br>';
         }
     
+}
+
+//Changer le badge de l'utilisateur
+function changerbadge($badgeid,$id){
+    
+    
+     
+        $query = "Select utilisateur_id from user where utilisateur_login=?";
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($id));
+    $userid=$prepQuery->fetch();
+    $userid=$userid['utilisateur_id'];
+    if(asucces($badgeid,$userid)!=0){
+        echo"oui.";
+    $query="UPDATE user SET badge_id = :badge WHERE utilisateur_id = :user";
+    $prepQuery = getDB()->prepare($query);
+    $prepQuery->bindValue('badge', $badgeid, PDO::PARAM_INT);
+    $prepQuery->bindValue('user', $userid, PDO::PARAM_INT);
+    
+        $prepQuery->execute();
+        redirect("profil.php");
+    }
+    else
+    {
+        echo"non.";
+        redirect("profil.php");
+    }
 }
 
 //Supprimer un dossier et son contenu
