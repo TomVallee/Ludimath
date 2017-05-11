@@ -1,6 +1,7 @@
 drop table if exists notes;
 drop table if exists reussisucces;
 drop table if exists exercice;
+drop table if exists feuille;
 drop table if exists theme;
 drop table if exists top;
 drop table if exists user;
@@ -81,14 +82,21 @@ create table theme (
     foreign key (theme_top) references top(top_id) on delete cascade
 )engine=innodb character set utf8 collate utf8_unicode_ci;
 
+create table feuille(
+    feuille_id integer not null auto_increment primary key,
+    feuille_titre varchar(100),
+    theme_id integer not null,
+    foreign key (theme_id) references theme(theme_id)
+)engine=innodb character set utf8 collate utf8_unicode_ci;
+
 create table exercice (
     exercice_id integer not null auto_increment primary key,
     exercice_nom varchar(100),
     exercice_desc varchar(255),
     exercice_url varchar(255),
-    theme_id integer,
+    feuille_id integer,
     exercice_num integer,
-    foreign key (theme_id) references theme(theme_id) on delete cascade
+    foreign key (feuille_id) references feuille(feuille_id) on delete cascade
 )engine=innodb character set utf8 collate utf8_unicode_ci;
 
 create table notes (

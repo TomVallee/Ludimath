@@ -41,12 +41,49 @@ insert into top values
 insert into top values
 (2,"Suite",5,4,1,2,3);
 insert into top values
-(3,"Intergration",5,4,3,2,1);
+(3,"Integration",5,4,3,2,1);
 insert into top values
 (4,"Matrice",5,2,1,4,3);
+insert into top values
+(5,"Etude de fonctions",1,2,3,4,5);
+insert into top values
+(6,"Complexes",1,2,3,4,5);
 
+insert into theme values
+(null,"Etude de fonctions",5);
+insert into theme values
+(null,"Continuité et limites",1);
+insert into theme values
+(null,"Suites",2);
+insert into theme values
+(null,"Complexes",6);
+insert into theme values
+(null,"Integration",3);
+insert into theme values
+(null,"Matrice",4);
 
-
+insert into feuille values
+(1,"Fonctions et graphes",1);
+insert into feuille values
+(2,"Dérivées et études de fonction",1);
+insert into feuille values
+(3,"Suites",3);
+insert into feuille values
+(4,"Dérivations en folies",1);
+insert into feuille values
+(5,"Continuité",2);
+insert into feuille values
+(6,"Limites",2);
+insert into feuille values
+(7,"Calcul d'intégrales",5);
+insert into feuille values
+(9,"Définitions de Matrices somme et produit",6);
+insert into feuille values
+(10,"Rang trace et déterminant",6);
+insert into feuille values
+(11,"Valeurs propres, vecteurs propres et diagonalisation",6);
+insert into feuille values
+(13,"Complexes",4);
 
 
 insert into succes values
