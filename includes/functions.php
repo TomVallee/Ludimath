@@ -81,12 +81,39 @@ function afficheContenuSucces($id)
     $prepQuery->execute(array($id));
     $res=$prepQuery->fetch();
     $badge=$res['badge_icone'];
+    
+        echo'<div class="succes">';
+    echo"
+    <div class ='row'><a href='changerbadge.php?badge=".$id."'>
+    <img src='images/badges/".$badge."' height='70' width='70' ></a>
+    <strong>".$titre."</strong></br>
+    </div>
+    <div class='row'>".$cond."</div>";             
+        echo'</div>';
+}
+//affiche un succes non obtenu
+function afficheContenuSuccesNonObtenu($id)
+{    
+    $query="SELECT * FROM succes WHERE succes_id=?";
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($id));
+    $res=$prepQuery->fetch();
+    $titre=$res['succes_titre'];
+    $cond=$res['succes_cond'];
+    $query="SELECT * FROM badge WHERE badge_id=?";
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($id));
+    $res=$prepQuery->fetch();
+    $badge=$res['badge_icone'];
+    
+        echo'<div class="successombre"> ';
     echo"
     <div class ='row'>
     <img src='images/badges/".$badge."' height='70' width='70' >
     <strong>".$titre."</strong></br>
     </div>
     <div class='row'>".$cond."</div>";   
+    echo'</div>';
 }
 
 //affiche les succes non obtenus et cachés
@@ -110,9 +137,7 @@ function afficheSuccesNonObtenu($id){
         echo'</div>';
     }
     else{
-        echo'<div class="successombre"> ';
-        afficheContenuSucces($id);        
-        echo'</div>';
+        afficheContenuSuccesNonObtenu($id); 
     }    
 }
 
@@ -123,9 +148,7 @@ function afficheSucces($utilisateur_id){
     $prepQuery->execute(array($utilisateur_id));
     
     foreach($prepQuery as $id){
-        echo'<div class="succes"> ';
-        afficheContenuSucces($id['succes_id']);        
-        echo'</div>';
+        afficheContenuSucces($id['succes_id']); 
         echo'</br>';
         }
         
@@ -155,15 +178,33 @@ function changerbadge($badgeid,$id){
     $prepQuery->bindValue('user', $userid, PDO::PARAM_INT);
     
         $prepQuery->execute();
-        redirect("profil.php");
+        redirect("succes.php");
     }
     else
     {
         echo"non.";
-        redirect("profil.php");
+        redirect("succes.php");
     }
 }
-
+//AfficherBadgede l'utilisateur
+function Afficherbadge($utilisateurId,$taille)
+{
+    
+    $query="SELECT badge_id FROM user WHERE utilisateur_id=?";    
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($utilisateurId));
+    $res=$prepQuery->fetch();    
+    $badgeId=$res['badge_id'];
+    
+    $query="SELECT * FROM badge WHERE badge_id=?";
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($badgeId));
+    $res=$prepQuery->fetch();
+    $badge=$res['badge_icone'];
+    
+    echo"<img src='images/badges/".$badge."' height=".$taille."width=".$taille." >";
+    
+}
 //MAJ du top général
 function majTopGeneral()
 {

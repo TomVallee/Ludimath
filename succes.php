@@ -12,8 +12,9 @@ $query= getDb()->query("SELECT succes_id FROM succes");
 <body>
     <div class="container">
         <?php require_once "includes/header.php"; ?>
-        
+        Voici votre badge : 
             <?php
+            Afficherbadge(1, 100);
             afficheSucces((1));
         
         ?>
