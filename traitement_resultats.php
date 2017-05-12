@@ -138,7 +138,7 @@ else
             }
         
             //MAJ Tops
-            majTopGeneral();
+            majTop(4);
         } else {
             echo 'échec';
         }

@@ -205,29 +205,32 @@ function Afficherbadge($utilisateurId,$taille)
     echo"<img src='images/badges/".$badge."' height=".$taille."width=".$taille." >";
     
 }
-//MAJ du top général
-function majTopGeneral()
+//MAJ du top $id
+function majTop($id)
 {
     $top=array();
-    $query="SELECT user.utilisateur_login, sum(note_score) from user, notes WHERE user.utilisateur_id=notes.utilisateur_id group by user.utilisateur_id";
+    $query="SELECT utilisateur_id, sum(note_score) from notes ";
+    if($id!=0)
+    {
+        $query.="where exercice_id in (select exercice_id from exercice where feuille_id in (select feuille_id from feuille where theme_id = ?))";
+    }
+    $query.=" group by utilisateur_id";
+    echo $query;
     $prepQuery=getDb()->prepare($query);
-    $prepQuery->execute();
+    if($id==0)
+        $prepQuery->execute();
+    else
+        $prepQuery->execute(array($id));
     while($result=$prepQuery->fetch())
     {
-        $query="SELECT utilisateur_id FROM user WHERE utilisateur_login=?";
-        $prepQuery2=getDb()->prepare($query);
-        $prepQuery2->execute(array($result["utilisateur_login"]));
-        $id=$prepQuery2->fetch()["utilisateur_id"];
-        $top[$id]=$result["sum(note_score)"];
+        $top[$result["utilisateur_id"]]=$result["sum(note_score)"];
     }
+    print_r($top);
     $top=array_slice($top,0,5,$preserve_keys=TRUE);
     asort($top);
-    print_r($top);
     $keys=array_keys($top);
-    print_r($keys);
     $maxKey=max(array_keys($keys));
-    echo $maxKey;
-    $query="UPDATE top SET top_pre=:prem, top_deux=:deux, top_trois=:trois, top_quat=:quatre, top_cinq=:cinq WHERE top_id=0";
+    $query="UPDATE top SET top_pre=:prem, top_deux=:deux, top_trois=:trois, top_quat=:quatre, top_cinq=:cinq WHERE top_id=:id";
     $prepQuery=getDb()->prepare($query);
     if($maxKey>=0)
         $prepQuery->bindValue("prem",$keys[$maxKey]);
@@ -249,5 +252,18 @@ function majTopGeneral()
         $prepQuery->bindValue("cinq",$keys[$maxKey-4]);
     else
         $prepQuery->bindValue("cinq",null);
+    $prepQuery->bindValue("id",$id);
     $prepQuery->execute();
 }
+
+//MAJ d'un top en particulier
+/*function majTop($id)
+{
+    $query="select utilisateur_id, sum(note_score) from notes where exercice_id in (select exercice_id from exercice where feuille_id in (select feuille_id from feuille where theme_id = ?)) group by utilisateur_id";
+    $prepQuery=getDb()->prepare($query);
+    $prepQuery->execute($id);
+    
+    $top=array();
+    
+    
+}*/
