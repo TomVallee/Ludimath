@@ -58,7 +58,8 @@ $top=$top->fetch();
                     </ul>
                 </div>
             <div><p> </p></div>
-                <!-- Lien vers la classe, transmission de l'ID de la classe -->
+                            <br>
+
 <div class="div1"> 
                         <a href="#">
                             <button class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span> Exercice 1 </button>

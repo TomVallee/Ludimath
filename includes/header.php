@@ -3,7 +3,7 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/ludimath/accueil_rentre.php">
+            <a class="navbar-brand" href="/ludimath/index.php">
                 <img alt="logo" src="/Ludimath/images/inp.jpeg">
             </a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-target">

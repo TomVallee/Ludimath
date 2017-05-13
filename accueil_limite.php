@@ -56,7 +56,7 @@ session_start();
                     </ul>
                 </div>
                 <!-- Lien vers la classe, transmission de l'ID de la classe -->
-<div class="div1"> 
+                    <div class="div1"> 
                         <a href="#">
                             <button class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle"></span> Exercice 1 </button>
                         </a>
