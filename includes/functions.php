@@ -333,7 +333,6 @@ function majTop($id)
         $query.="where exercice_id in (select exercice_id from exercice where feuille_id in (select feuille_id from feuille where theme_id = ?))";
     }
     $query.=" group by utilisateur_id";
-    echo $query;
     $prepQuery=getDb()->prepare($query);
     if($id==0)
         $prepQuery->execute();
@@ -343,11 +342,13 @@ function majTop($id)
     {
         $top[$result["utilisateur_id"]]=$result["sum(note_score)"];
     }
-    print_r($top);
     $top=array_slice($top,0,5,$preserve_keys=TRUE);
     asort($top);
     $keys=array_keys($top);
-    $maxKey=max(array_keys($keys));
+    if(!empty($keys))
+        $maxKey=max(array_keys($keys));
+    else
+        $maxKey=-1;
     $query="UPDATE top SET top_pre=:prem, top_deux=:deux, top_trois=:trois, top_quat=:quatre, top_cinq=:cinq WHERE top_id=:id";
     $prepQuery=getDb()->prepare($query);
     if($maxKey>=0)
@@ -374,14 +375,42 @@ function majTop($id)
     $prepQuery->execute();
 }
 
-//MAJ d'un top en particulier
-/*function majTop($id)
+//Maj de l'expérience d'un étudiant
+function majExp($etudId)
 {
-    $query="select utilisateur_id, sum(note_score) from notes where exercice_id in (select exercice_id from exercice where feuille_id in (select feuille_id from feuille where theme_id = ?)) group by utilisateur_id";
+    $query="SELECT sum(note_score) from notes where utilisateur_id =?";
     $prepQuery=getDb()->prepare($query);
-    $prepQuery->execute($id);
+    $prepQuery->execute(array($etudId));
+    $sum=$prepQuery->fetch()["sum(note_score)"];
     
-    $top=array();
+    $query="UPDATE user SET utilisateur_experience=? WHERE utilisateur_id=?";
+    $prepQuery=getDb()->prepare($query);
+    $prepQuery->execute(array($sum,$etudId));
+}
+
+//Maj du niveau d'un étudiant
+function majNiveau($etudId)
+{
+    $query="SELECT utilisateur_experience FROM user WHERE utilisateur_id=?";
+    $prepQuery=getDb()->prepare($query);
+    $prepQuery->execute(array($etudId));
+    $exp=$prepQuery->fetch()["utilisateur_experience"];
     
+    $query="SELECT max(niveau_id) FROM niveau WHERE niveau_experience<=?";
+    $prepQuery=getDb()->prepare($query);
+    $prepQuery->execute(array($exp));
+    if($niveau=$prepQuery->fetch()["max(niveau_id)"])
+    {
+        $niveau++;
+    }
+    else{
+        $niveau=1;
+    }
     
-}*/
+    echo $niveau."<br/>";
+    
+    $query="UPDATE user SET utilisateur_niveau=? WHERE utilisateur_id=?";
+    $prepQuery=getDb()->prepare($query);
+    $prepQuery->execute(array($niveau,$etudId));
+    
+}

@@ -77,7 +77,6 @@ else
                 $resultats=file($eleve);
                 $file=explode("/",$eleve);
                 $login=end($file);
-                echo $login."<br/>";
                 $query="SELECT utilisateur_id FROM user WHERE utilisateur_login=?";
                 $prepQuery=getDb()->prepare($query);
                 $prepQuery->execute(array($login));
@@ -116,7 +115,7 @@ else
                         $sheet=$content[2];
                         $exo=$content[3];
                         $type=$content[4];
-                        if($type=="score")
+                        if($type=="score" && in_array($sheet,array(1,2,3,4,5,6,7,9,10,11,13)))
                         {
                             $score=$content[5];
                             $query="SELECT exercice_id FROM exercice WHERE feuille_id=? AND exercice_num=?";
@@ -134,11 +133,15 @@ else
                             $prepQuery->execute();
                         }
                     }
+                    //Maj de l'exp et des niveaux
+                    majExp($etudId);
+                    majNiveau($etudId);
                 }
             }
         
             //MAJ Tops
-            majTop(4);
+            for($i=0;$i<7;$i++)
+                majTop($i);
         } else {
             echo 'échec';
         }
