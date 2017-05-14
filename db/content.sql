@@ -23,15 +23,15 @@ insert into niveau values
 (null,300);
 
 insert into user values
-(null, "Bazin", "Tom","tbazin","tbazin",10,1,1,0);
+(null, "Bazin", "Tom","tbazin","tbazin",10,1,1,36);
 insert into user values
-(null, "Vallee", "Tom","tvallee","tvallee",10,1,1,0);
+(null, "Vallee", "Tom","tvallee","tvallee",10,1,1,36);
 insert into user values
-(null, "Hazard", "Sylvain","shazard","shazard",10,1,1,0);
+(null, "Hazard", "Sylvain","shazard","shazard",10,1,1,36);
 insert into user values
-(null, "Guerin", "Noemie","nguerin","nguerin",10,1,1,0);
+(null, "Guerin", "Noemie","nguerin","nguerin",10,1,1,36);
 insert into user values
-(null, "Saracco", "Jerome","jsaracco","jsaracco",80,8,1,0);
+(null, "Saracco", "Jerome","jsaracco","jsaracco",80,8,1,36);
 
 
 insert into top values 
@@ -415,6 +415,8 @@ insert into succes values
 insert into succes values
 (null,"Achiever",0, "Posséder tous les badges");
 
+
+
 insert into badge values
 (null,"premierspas.png");
 insert into badge values
@@ -485,6 +487,8 @@ insert into badge values
 (null,"collectionneur.png");
 insert into badge values
 (null,"achiever.png");
+insert into badge values
+(0,"ludimath.png");
 
 INSERT INTO `reussisucces` 
 VALUES (NULL, '2017-05-09', '0', '1', '1');

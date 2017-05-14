@@ -205,6 +205,124 @@ function Afficherbadge($utilisateurId,$taille)
     echo"<img src='images/badges/".$badge."' height=".$taille."width=".$taille." >";
     
 }
+function AfficherBadgeId($badge_id,$taille)
+{
+    if ($badge_id!=""){
+        $query="SELECT * FROM badge WHERE badge_id=?";
+        $prepQuery=getDB()->prepare($query);
+        $prepQuery->execute(array($badge_id));
+        $res=$prepQuery->fetch();
+        $badge=$res['badge_icone'];
+    
+        echo"<img src='images/badges/".$badge."' alt='".$badge."' height=".$taille."width=".$taille." >";
+    }
+    else {
+        echo"<img src='images/badges/ludimath.png' height=".$taille."width=".$taille." >";
+    }
+    
+}
+
+//Affiche le top sur la page en fonction de l'id du top
+function AfficherTop($idTop)
+{
+    $query ="SELECT utilisateur_nom, utilisateur_prenom, badge_id FROM user "
+            . "WHERE utilisateur_id = (SELECT `top_pre` FROM `top` WHERE `top_id` =?)";    
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($idTop));
+    $pre=$prepQuery->fetch();
+    
+    $query ="SELECT utilisateur_nom, utilisateur_prenom, badge_id FROM user "
+            . "WHERE utilisateur_id = (SELECT `top_deux` FROM `top` WHERE `top_id` =?)"; 
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($idTop));
+    $deux=$prepQuery->fetch();
+    
+    $query ="SELECT utilisateur_nom, utilisateur_prenom, badge_id FROM user "
+            . "WHERE utilisateur_id = (SELECT `top_trois` FROM `top` WHERE `top_id` =?)";    
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($idTop));
+    $trois=$prepQuery->fetch();
+    
+    $query ="SELECT utilisateur_nom, utilisateur_prenom, badge_id FROM user "
+            . "WHERE utilisateur_id = (SELECT `top_quat` FROM `top` WHERE `top_id` =?)";    
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($idTop));
+    $quat=$prepQuery->fetch();
+    
+    $query ="SELECT utilisateur_nom, utilisateur_prenom, badge_id FROM user "
+            . "WHERE utilisateur_id = (SELECT `top_cinq` FROM `top` WHERE `top_id` =?)";    
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($idTop));
+    $cinq=$prepQuery->fetch();
+    
+    $query ="Select top_nom from top where top_id =?";
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($idTop));
+    $titre=$prepQuery->fetch();
+    
+    echo"<br/>";
+    echo"<div class='div2'>";
+    echo"<h4><center>".$titre['top_nom']."</center></h4>";
+    
+    echo "<ul>";
+    if ($pre['utilisateur_nom']!=""){
+        echo'<li>';echo"<strong> 1. ";
+        AfficherBadgeId($pre['badge_id'], 18);echo" ";
+        echo$pre['utilisateur_prenom']; echo" ";echo $pre['utilisateur_nom'];
+        echo"</strong>";echo'</li>';
+        if ($deux['utilisateur_nom']!="")
+        {
+            echo'<li>';echo"2. ";
+            AfficherBadgeId($deux['badge_id'], 15);echo" ";
+            echo$deux['utilisateur_prenom']; echo" ";echo $deux['utilisateur_nom'];
+            echo'</li>';
+            if ($trois['utilisateur_nom']!="")
+            {
+                echo'<li>';echo"3. ";
+                AfficherBadgeId($trois['badge_id'], 15);echo" ";
+                echo$trois['utilisateur_prenom']; echo" "; echo $trois['utilisateur_nom'];
+                echo'</li>';        
+                if ($quat['utilisateur_nom']!="")
+                {
+                    echo'<li>';echo"4. "; 
+                    AfficherBadgeId($quat['badge_id'], 15);echo" ";
+                    echo$quat['utilisateur_prenom']; echo" ";echo $quat['utilisateur_nom'];
+                    echo'</li>';        
+                    if ($cinq['utilisateur_nom']!="")
+                    {
+                        echo'<li>';echo"5. ";
+                        AfficherBadgeId($cinq['badge_id'], 15);echo" ";
+                        echo$cinq['utilisateur_prenom']; echo" ";echo $cinq['utilisateur_nom'];
+                        echo'</li>';  
+                    }
+                    else
+                    {
+                        echo"Place à prendre";
+                    }
+                }
+                else
+                {
+                    echo"Place à prendre";
+                }
+            }
+            else
+            {
+                echo"Place à prendre";
+            }
+        }
+        else
+        {
+            echo"Place à prendre";
+        }
+    }//reflechir aux noms trop grands
+    else
+    {
+        echo"Place à prendre";
+    }
+    echo"</ul>";echo"</div>"; echo"<br/>";
+    
+}
+
 //MAJ du top $id
 function majTop($id)
 {
