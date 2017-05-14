@@ -92,7 +92,6 @@ create table feuille(
 create table exercice (
     exercice_id integer not null auto_increment primary key,
     exercice_nom varchar(100),
-    exercice_desc varchar(255),
     exercice_url varchar(255),
     feuille_id integer,
     exercice_num integer,

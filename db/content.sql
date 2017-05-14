@@ -85,6 +85,264 @@ insert into feuille values
 insert into feuille values
 (13,"Complexes",4);
 
+insert into exercice values
+(null,"Fonctions et graphes","",1,1);
+insert into exercice values
+(null,"Fonctions et graphes","",1,2);
+insert into exercice values
+(null,"Fonctions et graphes","",1,3);
+insert into exercice values
+(null,"Fonctions et graphes","",1,4);
+insert into exercice values
+(null,"Fonctions et graphes","",1,5);
+insert into exercice values
+(null,"Association de fonctions I","",1,6);
+insert into exercice values
+(null,"Correspondance Fonctions/ens. de définition","",1,7);
+insert into exercice values
+(null,"Ensemble de définition d'un quotient (1)","",1,8);
+insert into exercice values
+(null,"Ensemble de définition d'un quotient (2)","",1,9);
+
+insert into exercice values
+(null,"Formules1 (monomes)","",4,1);
+insert into exercice values
+(null,"Dérivée de polynome","",4,2);
+insert into exercice values
+(null,"Dérivée d'un quotient simple","",4,3);
+insert into exercice values
+(null,"Dérivée de logarithme","",4,4);
+insert into exercice values
+(null,"Formules3 (exponentielles)","",4,5);
+insert into exercice values
+(null,"Formules5 (sqrt; 1/x)","",4,6);
+insert into exercice values
+(null,"Formules6 (sin et cos)","",4,7);
+insert into exercice values
+(null,"Tangente à une courbe polynomiale","",4,8);
+insert into exercice values
+(null,"Tangente à une courbe (avec exp)","",4,9);
+insert into exercice values
+(null,"Calcul de dérivée composée 4","",4,10);
+
+insert into exercice values
+(null,"Calcul de dérivée composée 1","",2,1);
+insert into exercice values
+(null,"Calcul de dérivée composée 2","",2,2);
+insert into exercice values
+(null,"Calcul de dérivée composée 3","",2,3);
+insert into exercice values
+(null,"Calcul de dérivée composée 4","",2,4);
+insert into exercice values
+(null,"Calcul de dérivée successives 1","",2,5);
+insert into exercice values
+(null,"Calcul de dérivée successives 2","",2,6);
+insert into exercice values
+(null,"Calcul de dérivée successives 3","",2,7);
+insert into exercice values
+(null,"Calcul direct de dérivée 2","",2,8);
+insert into exercice values
+(null,"Calcul direct de dérivée 3","",2,9);
+insert into exercice values
+(null,"Calcul direct de dérivée 4","",2,10);
+insert into exercice values
+(null,"Variation d'un trinôme du second degré 1","",2,11);
+insert into exercice values
+(null,"Dérivée avec exponentielle 4","",2,12);
+insert into exercice values
+(null,"Tableau de variations avec exp 2","",2,13);
+insert into exercice values
+(null,"Variations avec logarithme 2","",2,14);
+insert into exercice values
+(null,"Variations avec exponentielle 1","",2,15);
+
+insert into exercice values
+(null,"La fonction est-elle continue 1","",5,1);
+insert into exercice values
+(null,"La fonction est-elle continue 2","",5,2);
+insert into exercice values
+(null,"La fonction est-elle continue 3","",5,3);
+insert into exercice values
+(null,"La fonction est-elle continue 4","",5,4);
+insert into exercice values
+(null,"Pourquoi une fonction est continue continue 1","",5,5);
+insert into exercice values
+(null,"Rendre une fonction continue 1","",5,6);
+insert into exercice values
+(null,"Rendre une fonction continue 2","",5,7);
+insert into exercice values
+(null,"Rendre une fonction continue 3","",5,8);
+insert into exercice values
+(null,"Rendre une fonction continue 4","",5,9);
+
+insert into exercice values
+(null,"Calcul de limites","",6,1);
+insert into exercice values
+(null,"Croissances comparées I","",6,2);
+insert into exercice values
+(null,"Croissances comparées II","",6,3);
+insert into exercice values
+(null,"Limite de quotients","",6,4);
+insert into exercice values
+(null,"Limites de franctions rationnelles","",6,5);
+insert into exercice values
+(null,"Limites fractions rationnelles et ln","",6,6);
+
+insert into exercice values
+(null,"Fraction 2 termes","",3,1);
+insert into exercice values
+(null,"Comparaison de croissance","",3,2);
+insert into exercice values
+(null,"Comparaison de suites","",3,3);
+insert into exercice values
+(null,"Convergence et différence de termes","",3,4);
+insert into exercice values
+(null,"Deux limites","",3,5);
+insert into exercice values
+(null,"Fonction de récurrence","",3,6);
+insert into exercice values
+(null,"Fraction 3 termes","",3,7);
+insert into exercice values
+(null,"Epsilon","",3,8);
+insert into exercice values
+(null,"Monotonie I","",3,9);
+
+insert into exercice values
+(null,"Complexes","",13,1);
+insert into exercice values
+(null,"Complexes","",13,2);
+insert into exercice values
+(null,"Argument de somme","",13,3);
+insert into exercice values
+(null,"Argument demandé","",13,4);
+insert into exercice values
+(null,"Fraction","",13,5);
+insert into exercice values
+(null,"Complexes","",13,6);
+ 
+ insert into exercice values
+ (null,"Intégration de base","",7,1);
+ insert into exercice values
+ (null,"Intégration de base 0","",7,2);
+ insert into exercice values
+ (null,"Polynôme de degré 2","",7,3);
+ insert into exercice values
+ (null,"Polynôme de degré 3","",7,4);
+ insert into exercice values
+ (null,"sin et cos I","",7,5);
+ insert into exercice values
+ (null,"sin et cos II","",7,6);
+ insert into exercice values
+ (null,"Primitive et intégrale (fraction exp ou ln)","",7,7);
+ insert into exercice values
+ (null,"Calcul d'une intégrale","",7,8);
+ 
+ insert into exercice values
+ (null,"ABA","",9,1);
+ insert into exercice values
+ (null,"ABC","",9,2);
+ insert into exercice values
+ (null,"Opérations de matrices","",9,3);
+ insert into exercice values
+ (null,"Mult-un 4x4","",9,4);
+ insert into exercice values
+ (null,"Multiplicabilité","",9,5);
+ insert into exercice values
+ (null,"Multiplication partielle 3x3","",9,6);
+ insert into exercice values
+ (null,"Multiplication partielle 4x4","",9,7);
+ insert into exercice values
+ (null,"Propriétés algébriques","",9,8);
+ insert into exercice values
+ (null,"Propriétés algébriques II","",9,9);
+ insert into exercice values
+ (null,"Propriétés de multiplication","",9,10);
+ insert into exercice values
+ (null,"Taille de AB","",9,11);
+ insert into exercice values
+ (null,"Formule de coefficient 3x3","",9,12);
+ insert into exercice values
+ (null,"Formule de coefficient 3x3 II","",9,13);
+ insert into exercice values
+ (null,"Colonne et ligne 2x3","",9,14);
+ insert into exercice values
+ (null,"Colonne et ligne 3x3 I","",9,15);
+ insert into exercice values
+ (null,"Colonne et ligne 3x3 II","",9,16);
+ insert into exercice values
+ (null,"Images données taille variée","",9,17);
+ insert into exercice values
+ (null,"Multiplication à 3","",9,18);
+ insert into exercice values
+ (null,"Multiplication 2x2","",9,19);
+ insert into exercice values
+ (null,"Multiplication diagonale 2x2","",9,20);
+ insert into exercice values
+ (null,"Multiplication partielle 3x3","",9,21);
+ 
+ insert into exercice values
+ (null,"Trace 2x2","",10,1);
+ insert into exercice values
+ (null,"Trace 3x3","",10,2);
+ insert into exercice values
+ (null,"Trace 4x4","",10,3);
+ insert into exercice values
+ (null,"det 2x2","",10,4);
+ insert into exercice values
+ (null,"Det et trace 2x2","",10,5);
+ insert into exercice values
+ (null,"Exemple matrice 2x2","",10,6);
+ insert into exercice values
+ (null,"det 3x3","",10,7);
+ insert into exercice values
+ (null,"Det et trace 3x3","",10,8);
+ insert into exercice values
+ (null,"Déterminant et rang","",10,9);
+ insert into exercice values
+ (null,"Rang paramétré1","",10,10);
+ insert into exercice values
+ (null,"Rang paramétré 2","",10,11);
+ insert into exercice values
+ (null,"Colonne/ligne","",10,12);
+ insert into exercice values
+ (null,"Addition de lignes","",10,13);
+ insert into exercice values
+ (null,"Triangulaire 3x3","",10,14);
+ insert into exercice values
+ (null,"Opérations algébriques","",10,15);
+ insert into exercice values
+ (null,"det 4x4","",10,16);
+ insert into exercice values
+ (null,"Exemple 2x2","",10,17);
+ insert into exercice values
+ (null,"Gauss 3x3","",10,18);
+ insert into exercice values
+ (null,"Gauss 3x3 II","",10,19);
+ insert into exercice values
+ (null,"Permutation de lignes 3x3","",10,20);
+ insert into exercice values
+ (null,"Permutation de lignes 3x3 II","",10,21);
+ insert into exercice values
+ (null,"Produits donnés","",10,22);
+ 
+ insert into exercice values
+ (null,"Valeurs propres 3","",11,1);
+ insert into exercice values
+ (null,"Vecteurs propres et géométrie","",11,2);
+ insert into exercice values
+ (null,"Image et vecteurs propres 1","",11,3);
+ insert into exercice values
+ (null,"Image et vecteurs propres 2","",11,4);
+ insert into exercice values
+ (null,"Diagonaliser une matrice 2x2","",11,5);
+ insert into exercice values
+ (null,"Diagonaliser une matrice 3x3 (guidé)","",11,6);
+ insert into exercice values
+ (null,"Trouver un vecteur propre (I)","",  11,7);
+
+
+
+
 
 insert into succes values
 (null,"Mes premiers pas sur Ludimath",0,"Atteindre le niveau 2");
