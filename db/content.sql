@@ -1,5 +1,8 @@
 insert into equipe values
 (null,0,"LesBleus");
+insert into equipe values
+(null,0,"LesRouges");
+
 
 insert into niveau values
 (null,15);
@@ -32,6 +35,16 @@ insert into user values
 (null, "Guerin", "Noemie","nguerin","nguerin",10,1,1,36);
 insert into user values
 (null, "Saracco", "Jerome","jsaracco","jsaracco",80,8,1,36);
+insert into user values
+(null, "Balssa", "Floriane","fbalssa","fblassa",15,5,2,36);
+insert into user values
+(null, "Dupond", "Jules","jdupond","jdupond",20,4,2,36);
+insert into user values
+(null, "Rigal", "Julien","jrigal","jrigal",20,6,2,36);
+insert into user values
+(null, "Perrie", "Quentin","qperrie","qperrie",20,9,2,36);
+insert into user values
+(null, "Sta", "Juliette","jsta","jsta",20,4,2,36);
 
 
 insert into top values 
