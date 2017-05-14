@@ -14,7 +14,7 @@
             <?php if (isUserConnected()) { ?>
             <a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-flag"></span> Equipe</a>
             <a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-book"></span> Cours</a>
-            <a class="navbar-brand" href="accueil_rentre.php"><span class="glyphicon glyphicon-book"></span> Exercice</a>
+            <a class="navbar-brand" href="exercices.php"><span class="glyphicon glyphicon-book"></span> Exercice</a>
             <a class="navbar-brand" href="succes.php"><span class="glyphicon glyphicon-lock"></span> Succes </a>
             <?php } ?>
             
@@ -25,7 +25,7 @@
                 <?php if (isUserConnected()) { ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-user"></span> Bienvenue, <?= $_SESSION['login'] ?> <b class="caret"></b>
+                             <?php AfficherBadgeId($_SESSION['id'], 25) ?>  Bienvenue, <?= $_SESSION['login'] ;?> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="profil.php">Mon profil</a></li>

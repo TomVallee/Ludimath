@@ -66,11 +66,14 @@ text-align:center;
 vertical-align:middle;
 } 
 .div2 { 
-width:180px; 
+width:250px; 
 height:180px; 
+border-radius: 5px; 
+box-shadow: 1px 2px 5px #CCCCCC; 
 display:inline-block; 
 border: 1px solid black;
-text-align:center; 
+margin-left: -20px;
+margin-top: 40px;
 vertical-align:middle;
 } 
 .sec3 { 

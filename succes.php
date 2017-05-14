@@ -14,8 +14,8 @@ $query= getDb()->query("SELECT succes_id FROM succes");
         <?php require_once "includes/header.php"; ?>
         Voici votre badge : 
             <?php
-            Afficherbadge(1, 100);
-            afficheSucces((1));
+            Afficherbadge($_SESSION['id'], 100);
+            afficheSucces(($_SESSION['id']));
         
         ?>
     </div>
