@@ -186,7 +186,7 @@ function changerbadge($badgeid,$id){
         redirect("succes.php");
     }
 }
-//AfficherBadgede l'utilisateur
+//AfficherBadge de l'utilisateur
 function Afficherbadge($utilisateurId,$taille)
 {
     
