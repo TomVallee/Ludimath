@@ -12,6 +12,8 @@ $reqNiv = getDb()->prepare('SELECT * FROM niveau WHERE niveau_id=?');
 $reqNiv->execute(array($user['utilisateur_niveau']));
 $niv = $reqNiv->fetch();
 
+$query= getDb()->query("SELECT succes_id FROM succes");
+
 $progr = $user['utilisateur_experience']/$niv['niveau_experience'];
 ?>
 
@@ -67,9 +69,12 @@ $progr = $user['utilisateur_experience']/$niv['niveau_experience'];
          ?>   
         <hr>
 
-        <div class="div1">
+        <div>
             <h3>Mes derniers badges</h3>
-            <img src="images/Badge.png">
+            <?php
+            AfficherbadgeProfil($_SESSION['id'], 100);
+            afficheSuccesProfil(($_SESSION['id']));
+            ?>
         </div>
         <div class="div1">
             <h3>Mon meilleur score</h3>

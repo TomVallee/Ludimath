@@ -31,7 +31,6 @@ $img = $equi1['equipe_score']/($equi1['equipe_score']+$equi2['equipe_score']);
         <h4>Classement général: </h4>
             <ul>
             <li> <?php 
-                echo $equipe['equipe_id'];
                 $top = getDb() ->query('SELECT utilisateur_nom, utilisateur_prenom FROM user WHERE utilisateur_id = (SELECT `top_pre` FROM `top` WHERE `top_id` =0)');
                 $top=$top->fetch(); 
                 echo $top['utilisateur_nom'].' '.$top['utilisateur_prenom'];

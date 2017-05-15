@@ -141,6 +141,25 @@ function afficheSuccesNonObtenu($id){
     }    
 }
 
+function afficheSuccesProfil($utilisateur_id){
+    $query ="Select succes_id from reussisucces where utilisateur_id=? ORDER BY reussite_date limit 0,3";
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($utilisateur_id));
+    while($id=$prepQuery->fetch()){
+        afficheContenuSucces($id['succes_id']); 
+        $i=$i+1;
+        echo'</br>';
+        }
+        
+    /*$query ="SELECT succes_id,succes_cache FROM succes WHERE succes_id NOT IN (SELECT succes_id from reussisucces where utilisateur_id=1) Order By succes_cache";
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($utilisateur_id));
+    for($i=0; $i<3; $i=$i+1){
+        afficheSuccesNonObtenu($id['succes_id']);  
+        echo'</br>';
+        }*/
+    
+}
 //affiche les succes du joueur
 function afficheSucces($utilisateur_id){
     $query ="Select succes_id from reussisucces where utilisateur_id=?";
@@ -221,6 +240,24 @@ function AfficherBadgeId($badge_id,$taille)
     }
     
 }
+
+function Afficherbadgeprofil($badge_id,$taille)
+{
+    
+    if ($badge_id!=""){
+        $query="SELECT * FROM badge WHERE badge_id=?";
+        $prepQuery=getDB()->prepare($query);
+        $prepQuery->execute(array($badge_id));
+        $res=$prepQuery->fetch();
+        $badge=$res['badge_icone'];
+        echo"<img src='images/badges/".$badge."' alt='".$badge."' height=".$taille."width=".$taille." >";
+    }
+    else {
+        echo"<img src='images/badges/ludimath.png' height=".$taille."width=".$taille." >";
+    }
+    
+}
+
 
 //Affiche le top sur la page en fonction de l'id du top
 function AfficherTop($idTop)
