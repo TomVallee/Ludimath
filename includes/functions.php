@@ -53,6 +53,47 @@ function recursiveRemoveDirectory($directory)
     rmdir($directory);
 }
 
+//Verifie les succes à afficher et les affiche
+function AfficherNotifSucces($userId)
+{
+    
+}
+
+//SuccesConnexion
+function SuccesConnection($userdId)
+{
+    $heure = date("G");
+    $minute = date("i");
+    if (11<$heure && $heure <14)
+    {ReussirSucces(28,$userdId);}
+    else if (20<$heure && $heure <=24)
+    {ReussirSucces(29,$userId);}
+    else if (5<$heure && $heure <9)
+    {ReussirSucces(30,$userId);}
+    else if (7<$heure && $heure <10)
+    {ReussirSucces(31,$userId);}
+    else if (2<$heure && $heure <4)
+    {
+        if(12<$minute && $minute<16)
+            {ReussirSucces(32,$userId);}
+    }
+    if (aSucces(28,$userdId)!=0 && aSucces(29,$userdId)!=0 && aSucces(30,$userdId)!=0 && aSucces(31,$userdId)!=0 && aSucces(32,$userdId)!=0)
+    {ReussirSucces(33,$userdId);}
+}
+
+//ReussirSucces
+function ReussirSucces($succesId,$userId)
+{
+    if(aSucces($succesId,$userId)==0)
+    {
+        $query="INSERT INTO reussisucces VALUES (null,:date,1,:succes,:utilisateur)";
+        $prepQuery=getDb()->prepare($query);
+        $prepQuery->bindValue("date",date("Y-m-d"));
+        $prepQuery->bindValue("succes",$succesId);
+        $prepQuery->bindValue("utilisateur",$userId);
+        $prepQuery->execute();
+    }
+}
 //dit si l'user a réussi le succès
 function aSucces($succesId,$userId){
     $prepQuery="SELECT count(*) from reussisucces WHERE utilisateur_id = ".$userId." and succes_id=".$succesId;
