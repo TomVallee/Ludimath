@@ -136,15 +136,26 @@ else
                     //Maj de l'exp et des niveaux
                     majExp($etudId);
                     majNiveau($etudId);
-                    
-                    //Maj succès
-                    majSucces($etudId);
                 }
             }
         
             //MAJ Tops
             for($i=0;$i<7;$i++)
                 majTop($i);
+            foreach($eleves as $eleve)
+            {
+                $resultats=file($eleve);
+                $file=explode("/",$eleve);
+                $login=end($file);
+                $query="SELECT utilisateur_id FROM user WHERE utilisateur_login=?";
+                $prepQuery=getDb()->prepare($query);
+                $prepQuery->execute(array($login));
+                if($etudId=$prepQuery->fetch()["utilisateur_id"])
+                {
+                    //Maj succès
+                    majSucces($etudId);
+                }
+            }
         } else {
             echo 'échec';
         }

@@ -84,7 +84,7 @@ function SuccesConnection($userdId)
 //ReussirSucces
 function ReussirSucces($succesId,$userId)
 {
-    if(aSucces($succesId,$userId)==0)
+    if(!aSucces($succesId,$userId))
     {
         $query="INSERT INTO reussisucces VALUES (null,:date,1,:succes,:utilisateur)";
         $prepQuery=getDb()->prepare($query);
@@ -498,7 +498,7 @@ function majSucces($etudId)
     
 }
 
-//Maj des succès liés au niveau pour un étudiant
+//Maj des succès liés au niveau pour un étudiant (1 à 3)
 function majSuccesNiveau($etudId)
 {
     $query="SELECT utilisateur_niveau FROM user WHERE utilisateur_id=?";
@@ -522,16 +522,11 @@ function majSuccesNiveau($etudId)
         $succes=3;
     }
     if($succes!=0){
-         $query="INSERT INTO reussisucces VALUES (null,:date,1,:succes,:utilisateur)";
-         $prepQuery=getDb()->prepare($query);
-         $prepQuery->bindValue("date",date("Y-m-d"));
-         $prepQuery->bindValue("succes",$succes);
-         $prepQuery->bindValue("utilisateur",$etudId);
-         $prepQuery->execute();
+         ReussirSucces($succes,$etudId);
     }
 }
 
-//Maj des succès liés aux tops pour un étudiant
+//Maj des succès liés aux tops pour un étudiant (4 à 9)
 function majSuccesTop($etudId)
 {
     //Entrer dans le top général (4)
@@ -541,11 +536,7 @@ function majSuccesTop($etudId)
         $prepQuery->execute(array($etudId,$etudId,$etudId,$etudId,$etudId));
         if($res=$prepQuery->fetch())
         {
-            $query="INSERT INTO reussisucces VALUES(null,:date,1,4,:utilisateur)";
-            $prepQuery=getDb()->prepare($query);
-            $prepQuery->bindValue("date",date("Y-m-d"));
-            $prepQuery->bindValue("utilisateur",$etudId);
-            $prepQuery->execute();
+            ReussirSucces(4,$etudId);
         }
     }
     
@@ -557,11 +548,7 @@ function majSuccesTop($etudId)
         $prepQuery->execute(array($etudId));
         if($res=$prepQuery->fetch())
         {
-            $query="INSERT INTO reussisucces VALUES(null,:date,1,5,:utilisateur)";
-            $prepQuery=getDb()->prepare($query);
-            $prepQuery->bindValue("date",date("Y-m-d"));
-            $prepQuery->bindValue("utilisateur",$etudId);
-            $prepQuery->execute();
+            ReussirSucces(5,$etudId);
         }
     }
     
@@ -575,13 +562,63 @@ function majSuccesTop($etudId)
             $prepQuery->execute(array($i,$etudId,$etudId,$etudId,$etudId,$etudId));
             if($res=$prepQuery->fetch())
             {
-                $query="INSERT INTO reussisucces VALUES(null,:date,1,6,:utilisateur)";
-                $prepQuery=getDb()->prepare($query);
-                $prepQuery->bindValue("date",date("Y-m-d"));
-                $prepQuery->bindValue("utilisateur",$etudId);
-                $prepQuery->execute();
+                ReussirSucces(6,$etudId);
                 break;
             }
         }
+    }
+    
+    //Entrer dans tous les tops thématiques (7)
+    if(!aSucces(7,$etudId))
+    {
+        $nbTop=0;
+        for($i=1;$i<=6;$i++)
+        {
+            $query="SELECT * FROM top WHERE top_id=? AND top_pre=? OR top_deux=? OR top_trois=? OR top_quat=? OR top_cinq=?";
+            $prepQuery=getDb()->prepare($query);
+            $prepQuery->execute(array($i,$etudId,$etudId,$etudId,$etudId,$etudId));
+            if($res=$prepQuery->fetch())
+                $nbTop++;
+            else
+                break;
+        }
+        if($nbTop==6)
+            ReussirSucces(7,$etudId);
+    }
+    
+    //Entrer dans le top général et tous les tops thématiques (8)
+    if(!aSucces(8,$etudId))
+    {
+        $nbTop=0;
+        for($i=0;$i<=6;$i++)
+        {
+            $query="SELECT * FROM top WHERE top_id=? AND top_pre=? OR top_deux=? OR top_trois=? OR top_quat=? OR top_cinq=?";
+            $prepQuery=getDb()->prepare($query);
+            $prepQuery->execute(array($i,$etudId,$etudId,$etudId,$etudId,$etudId));
+            if($res=$prepQuery->fetch())
+                $nbTop++;
+            else
+                break;
+        }
+        if($nbTop==7)
+            ReussirSucces(8,$etudId);
+    }
+    
+    //Etre premier dans le top général et tous les tops thématiques (9)
+    if(!aSucces(9,$etudId))
+    {
+        $nbTop=0;
+        for($i=0;$i<=6;$i++)
+        {
+            $query="SELECT * FROM top WHERE top_id=? AND top_pre=?";
+            $prepQuery=getDb()->prepare($query);
+            $prepQuery->execute(array($i,$etudId));
+            if($res=$prepQuery->fetch())
+                $nbTop++;
+            else
+                break;
+        }
+        if($nbTop==7)
+            ReussirSucces(9,$etudId);
     }
 }
