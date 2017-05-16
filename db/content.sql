@@ -3,7 +3,6 @@ insert into equipe values
 insert into equipe values
 (null,0,"LesRouges");
 
-
 insert into niveau values
 (null,15);
 insert into niveau values
@@ -503,23 +502,23 @@ insert into badge values
 insert into badge values
 (0,"ludimath.png");
 
-INSERT INTO `reussisucces` 
+INSERT INTO reussisucces 
 VALUES (NULL, '2017-05-09', '0', '1', '1');
-INSERT INTO `reussisucces` 
+INSERT INTO reussisucces
 VALUES (NULL, '2017-05-09', '0', '4', '1');
-INSERT INTO `reussisucces` 
+INSERT INTO reussisucces
 VALUES (NULL, '2017-05-09', '0', '6', '1');
-INSERT INTO `reussisucces` 
+INSERT INTO reussisucces 
 VALUES (NULL, '2017-05-09', '0', '7', '1');
-INSERT INTO `reussisucces` 
+INSERT INTO reussisucces 
 VALUES (NULL, '2017-05-09', '0', '10', '1');
-INSERT INTO `reussisucces` 
+INSERT INTO reussisucces 
 VALUES (NULL, '2017-05-09', '0', '11', '1');
-INSERT INTO `reussisucces` 
+INSERT INTO reussisucces 
 VALUES (NULL, '2017-05-09', '0', '15', '1');
-INSERT INTO `reussisucces` 
+INSERT INTO reussisucces 
 VALUES (NULL, '2017-05-09', '0', '16', '1');
-INSERT INTO `reussisucces` 
+INSERT INTO reussisucces 
 VALUES (NULL, '2017-05-09', '0', '20', '1');
-INSERT INTO `reussisucces` 
+INSERT INTO reussisucces 
 VALUES (NULL, '2017-05-09', '0', '32', '1');

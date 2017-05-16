@@ -8,12 +8,6 @@ function getDb() {
     $password = "passwd";
     $db = "ludimath";
 
-    // Deployment on Heroku with ClearDB for MySQL
-    /*$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-    $server = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $db = substr($url["path"], 1);*/
     return new PDO("mysql:host=$server;dbname=$db;charset=utf8", "$username", "$password",
         array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 }
@@ -450,4 +444,103 @@ function majNiveau($etudId)
     $prepQuery=getDb()->prepare($query);
     $prepQuery->execute(array($niveau,$etudId));
     
+}
+
+//Maj des succès d'un étudiant
+function majSucces($etudId)
+{
+    //Succès liés au niveau (1 à 3)
+    majSuccesNiveau($etudId);
+    
+    //Succès liés aux tops (4 à 9)
+    majSuccesTop($etudId);
+    
+}
+
+//Maj des succès liés au niveau pour un étudiant
+function majSuccesNiveau($etudId)
+{
+    $query="SELECT utilisateur_niveau FROM user WHERE utilisateur_id=?";
+    $prepQuery=getDb()->prepare($query);
+    $prepQuery->execute(array($etudId));
+    $niveau=$prepQuery->fetch()["utilisateur_niveau"];
+    $succes=0;
+    //Succès niveau 2
+    if(!aSucces(1,$etudId) && $niveau>=2)
+    {
+       $succes=1;
+    }
+    //Succès niveau 10
+    if(!aSucces(2,$etudId) && $niveau>=10)
+    {
+        $succes=2;
+    }
+    //Succès niveau 20
+    if(!aSucces(3,$etudId) && $niveau>=20)
+    {
+        $succes=3;
+    }
+    if($succes!=0){
+         $query="INSERT INTO reussisucces VALUES (null,:date,1,:succes,:utilisateur)";
+         $prepQuery=getDb()->prepare($query);
+         $prepQuery->bindValue("date",date("Y-m-d"));
+         $prepQuery->bindValue("succes",$succes);
+         $prepQuery->bindValue("utilisateur",$etudId);
+         $prepQuery->execute();
+    }
+}
+
+//Maj des succès liés aux tops pour un étudiant
+function majSuccesTop($etudId)
+{
+    //Entrer dans le top général (4)
+    if(!aSucces(4,$etudId)){
+        $query="SELECT * FROM top WHERE top_id=0 AND top_pre=? OR top_deux=? OR top_trois=? OR top_quat=? OR top_cinq=?";
+        $prepQuery=getDb()->prepare($query);
+        $prepQuery->execute(array($etudId,$etudId,$etudId,$etudId,$etudId));
+        if($res=$prepQuery->fetch())
+        {
+            $query="INSERT INTO reussisucces VALUES(null,:date,1,4,:utilisateur)";
+            $prepQuery=getDb()->prepare($query);
+            $prepQuery->bindValue("date",date("Y-m-d"));
+            $prepQuery->bindValue("utilisateur",$etudId);
+            $prepQuery->execute();
+        }
+    }
+    
+    //Etre premier du top général (5)
+    if(!aSucces(5,$etudId))
+    {
+        $query="SELECT * FROM top WHERE top_id=0 AND top_pre=?";
+        $prepQuery=getDb()->prepare($query);
+        $prepQuery->execute(array($etudId));
+        if($res=$prepQuery->fetch())
+        {
+            $query="INSERT INTO reussisucces VALUES(null,:date,1,5,:utilisateur)";
+            $prepQuery=getDb()->prepare($query);
+            $prepQuery->bindValue("date",date("Y-m-d"));
+            $prepQuery->bindValue("utilisateur",$etudId);
+            $prepQuery->execute();
+        }
+    }
+    
+    //Entrer dans un top thématique (6)
+    if(!aSucces(6,$etudId))
+    {
+        for($i=1;$i<=6;$i++)
+        {
+            $query="SELECT * FROM top WHERE top_id=? AND top_pre=? OR top_deux=? OR top_trois=? OR top_quat=? OR top_cinq=?";
+            $prepQuery=getDb()->prepare($query);
+            $prepQuery->execute(array($i,$etudId,$etudId,$etudId,$etudId,$etudId));
+            if($res=$prepQuery->fetch())
+            {
+                $query="INSERT INTO reussisucces VALUES(null,:date,1,6,:utilisateur)";
+                $prepQuery=getDb()->prepare($query);
+                $prepQuery->bindValue("date",date("Y-m-d"));
+                $prepQuery->bindValue("utilisateur",$etudId);
+                $prepQuery->execute();
+                break;
+            }
+        }
+    }
 }

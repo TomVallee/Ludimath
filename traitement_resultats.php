@@ -136,6 +136,9 @@ else
                     //Maj de l'exp et des niveaux
                     majExp($etudId);
                     majNiveau($etudId);
+                    
+                    //Maj succès
+                    majSucces($etudId);
                 }
             }
         
