@@ -397,13 +397,13 @@ insert into succes values
 insert into succes values
 (null,"Sans faute",0,"Réussir 5 exercices à la suite");
 insert into succes values
-(null,"Maîtrise",0,"Réussir 5 exercices à la suite");
+(null,"Maîtrise",0,"Réussir 10 exercices à la suite");
 insert into succes values
-(null,"A la chaîne",0,"Réussir 5 exercices à la suite");
+(null,"A la chaîne",0,"Réussir 20 exercices à la suite");
 insert into succes values
 (null,"Besoin d'aide ?",0,"Rater 5 exercices à la suite");
 insert into succes values
-(null,"Gros Fail !",0,"Rater 5 exercices à la suite");
+(null,"Gros Fail !",0,"Rater 10 exercices à la suite");
 insert into succes values
 (null,"Spécialiste",0,"Réussir tous les exercices d'une thématique");
 insert into succes values
@@ -426,7 +426,24 @@ insert into succes values
 (null,"Collectionneur",0, "Posséder 15 badges");
 insert into succes values
 (null,"Achiever",0, "Posséder tous les badges");
-
+insert into succes values
+(null,"Les fondements de l'algèbre",0,"Réussir 3 fois l'exercice Variations d'un trinôme du second degré 1");
+insert into succes values
+(null,"Vers l'infini et au-delà",0,"Réussir tous les exercices sur les limites");
+insert into succes values
+(null,"Gauss Buster",0,"Réussir tous les exercices sur les matrices");
+insert into succes values
+(null,"La fille d'Euler",0,"Réussir tous les exercices sur les complexes");
+insert into succes values
+(null,"Les dessous Descartes",0,"Réussir tous les exercices sur l'étude de fonctions");
+insert into succes values
+(null,"L'arbre qui Cauchy la forêt",0,"Réussir tous les exercices sur la continuité");
+insert into succes values
+(null,"On va pas en faire tout un foin",0,"Réussir 3 fois l'exercice Calcul de dérivée composée 1");
+insert into succes values
+(null,"Quand est-ce qu'on Blaise, Pascal ?",0,"Réussir 3 fois l'exercice Tangente à une courbe polynemiale");
+insert into succes values
+(null,"Riemann et les lapins crétins",0,"Réussir tous les exercices sur les intégrales");
 
 
 insert into badge values
