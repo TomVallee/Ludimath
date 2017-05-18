@@ -5,12 +5,13 @@ session_start();
     <!doctype html>
     <html>
 
-    <?php require_once "includes/head.php"; ?>
-        <div class="container">
-            <?php require_once "includes/header.php"; ?>
-        </div>
+    <body>
+        <?php require_once "includes/head.php"; ?>
+            <div class="container">
+                <?php require_once "includes/header.php"; ?>
+            </div>
 
-        <body>
+
             <?php
 if(isset($_FILES['File']))
 {
@@ -167,14 +168,38 @@ else if (isset($_POST['raz']))
     ?>
                 <form action="" method="POST" enctype="multipart/form-data">
                     <div class="row">
+                        <div class="col-sm-4">Confirmer ?</div>
                         <div class="col-sm-4">
-                            <button type="submit" class="btn btn-primary"><span class='glyphicon glyphicon-save'></span>Mettre à jour le parcours</button>
+                            <button type="submit" name="valid" value="true" class="btn btn-primary"><span class='glyphicon glyphicon-ok'></span>Oui</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="submit" name="valid" value="false" class="btn btn-primary"><span class='glyphicon glyphicon-remove'></span>Non</button>
                         </div>
                     </div>
                 </form>
                 <?php
 }
-            else{
+
+else{
+    if(isset($_POST['valid']) && $_POST['valid']=="true")
+            //supression des résultats
+            $prepQuery=getDb()->prepare("DELETE FROM notes");
+            $prepQuery->execute();
+            
+            //MAJ des tops
+            for($i=0;$i<=6;$i++)
+                majTop($i);
+            //suppression des succès réussis
+            $prepQuery=getDb()->prepare("DELETE FROM reussisucces");
+            $prepQuery->execute();
+            
+            //suppression des étudiants
+            $prepQuery=getDb()->prepare("DELETE FROM user WHERE utilisateur_admin=0");
+            $prepQuery->execute();
+            
+            //Raz des scores d'équipes
+            $prepQuery=getDb()->prepare("UPDATE equipe SET equipe_score=0");
+            $prepQuery->execute();
 ?>
 
 
@@ -199,10 +224,10 @@ else if (isset($_POST['raz']))
                             </form>
                         </div>
                     </div>
-                    <?php}?>
+                    <?php } ?>
 
                         <?php require_once "includes/scripts.php"; ?>
                             <?php require_once "includes/footer.php"; ?>
-        </body>
+    </body>
 
     </html>
