@@ -62,6 +62,20 @@ function recursiveRemoveDirectory($directory)
 //Verifie les succes à afficher et les affiche
 function AfficherNotifSucces($userId)
 {    
+    //perelman
+    $query="SELECT count(*) FROM reussisucces WHERE utilisateur_id=".$userId;
+    $res= getDb()->query($query);        
+            $count=$res->fetch();            
+    $query="SELECT badge_id FROM user WHERE utilisateur_id=?";    
+    $prepQuery=getDB()->prepare($query);
+    $prepQuery->execute(array($userId));
+    $res=$prepQuery->fetch();    
+    $badgeId=$res['badge_id'];
+    if($count['count(*)']>9 && $badgeId=36)
+    {
+        ReussirSucces(45, $userId);
+    }
+    //notifssucces
     $prepQuery=getDb()->prepare("SELECT succes_id,reussite_id FROM reussisucces WHERE utilisateur_id=? AND afficher_succes=1");
     $prepQuery->execute(array($userId));    
     foreach($prepQuery as $id){ 
@@ -85,15 +99,15 @@ function SuccesConnection($userdId)
     if (11<$heure && $heure <14)
     {ReussirSucces(28,$userdId);}
     else if (20<$heure && $heure <=24)
-    {ReussirSucces(29,$userId);}
+    {ReussirSucces(29,$userdId);}
     else if (5<$heure && $heure <9)
-    {ReussirSucces(30,$userId);}
+    {ReussirSucces(30,$userdId);}
     else if (7<$heure && $heure <10)
-    {ReussirSucces(31,$userId);}
+    {ReussirSucces(31,$userdId);}
     else if (2<$heure && $heure <4)
     {
         if(12<$minute && $minute<16)
-            {ReussirSucces(32,$userId);}
+            {ReussirSucces(32,$userdId);}
     }
     if (aSucces(28,$userdId)!=0 && aSucces(29,$userdId)!=0 && aSucces(30,$userdId)!=0 && aSucces(31,$userdId)!=0 && aSucces(32,$userdId)!=0)
     {ReussirSucces(33,$userdId);}

@@ -448,6 +448,8 @@ insert into succes values
 (null,"Quand est-ce qu'on Blaise, Pascal ?",0,"Réussir 3 fois l'exercice Tangente à une courbe polynemiale");
 insert into succes values
 (null,"Riemann et les lapins crétins",0,"Réussir tous les exercices sur les intégrales");
+insert into succes values
+(null,"La réussite est une récompense en soi",1,"Réussir 10 succès et toujours avoir le badge LudiMath");
 
 
 insert into badge values
