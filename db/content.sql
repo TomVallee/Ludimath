@@ -49,8 +49,6 @@ insert into user values
 insert into user values
 (null,"Admin","Admin","admin","admin",0,1,1,3,36);
 
-insert into admin values
-(null,"Admin","admin");
 
 insert into top values 
 (0,"Général",5,4,1,3,2);

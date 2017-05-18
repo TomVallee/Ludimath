@@ -61,8 +61,20 @@ function recursiveRemoveDirectory($directory)
 
 //Verifie les succes à afficher et les affiche
 function AfficherNotifSucces($userId)
-{
-    
+{    
+    $prepQuery=getDb()->prepare("SELECT succes_id,reussite_id FROM reussisucces WHERE utilisateur_id=? AND afficher_succes=1");
+    $prepQuery->execute(array($userId));    
+    foreach($prepQuery as $id){ 
+        $query="UPDATE reussisucces SET afficher_succes=0 WHERE reussite_id=:id";           
+        $prepQuery=getDb()->prepare($query);
+        $prepQuery->bindValue("id",$id['reussite_id']);
+        $prepQuery->execute();
+       echo' <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        Succes Obtenu ! 
+        ';afficheContenuSucces($id['succes_id']);
+        echo'</div>';
+        }
 }
 
 //SuccesConnexion

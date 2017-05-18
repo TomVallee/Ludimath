@@ -51,3 +51,5 @@
         </div>
         <!-- /.container -->
     </nav>
+<?php AfficherNotifSucces($_SESSION['id']); 
+ SuccesConnection($_SESSION['id']);?>
