@@ -17,6 +17,12 @@ function isUserConnected() {
     return isset($_SESSION['login']);
 }
 
+//Check if the user is an admin
+function isUserAdmin($userId){
+    $prepQuery=getDb()->prepare("SELECT utilisateur_admin FROM user WHERE utilisateur_id=?");
+    $prepQuery->execute(array($userId));
+    return ($prepQuery->fetch()["utilisateur_admin"]==1);
+}
 // Redirect to a URL
 function redirect($url) {
     header("Location: $url");
@@ -185,14 +191,6 @@ function afficheSuccesProfil($utilisateur_id){
         $i=$i+1;
         echo'</br>';
         }
-        
-    /*$query ="SELECT succes_id,succes_cache FROM succes WHERE succes_id NOT IN (SELECT succes_id from reussisucces where utilisateur_id=1) Order By succes_cache";
-    $prepQuery=getDB()->prepare($query);
-    $prepQuery->execute(array($utilisateur_id));
-    for($i=0; $i<3; $i=$i+1){
-        afficheSuccesNonObtenu($id['succes_id']);  
-        echo'</br>';
-        }*/
     
 }
 //affiche les succes du joueur
@@ -447,6 +445,24 @@ function majTop($id)
     $prepQuery->execute();
 }
 
+//MAJ du score des équipes
+function majEquipes()
+{
+    for($i=1;$i<=2;$i++)
+    {
+        $prepQuery=getDb()->prepare("SELECT sum(note_score) as score FROM notes WHERE utilisateur_id IN (SELECT utilisateur_id FROM user WHERE equipe_id=?)");
+        $prepQuery->execute(array($i));
+        $score=$prepQuery->fetch()["score"];
+        if($score==null)
+        {
+            $score=0;
+        }
+        
+        $prepQuery=getDb()->prepare("UPDATE equipe SET equipe_score=? WHERE equipe_id=?");
+        $prepQuery->execute(array($score,$i));
+    }
+}
+
 //Maj de l'expérience d'un étudiant
 function majExp($etudId)
 {
@@ -478,8 +494,6 @@ function majNiveau($etudId)
     else{
         $niveau=1;
     }
-    
-    echo $niveau."<br/>";
     
     $query="UPDATE user SET utilisateur_niveau=? WHERE utilisateur_id=?";
     $prepQuery=getDb()->prepare($query);
