@@ -431,6 +431,8 @@ insert into succes values
 insert into succes values
 (null,"Achiever",0, "Posséder tous les badges");
 insert into succes values
+(null,null,null,null);
+insert into succes values
 (null,"Les fondements de l'algèbre",0,"Réussir 3 fois l'exercice Variations d'un trinôme du second degré 1");
 insert into succes values
 (null,"Vers l'infini et au-delà",0,"Réussir tous les exercices sur les limites");
@@ -524,6 +526,26 @@ insert into badge values
 (null,"achiever.png");
 insert into badge values
 (0,"ludimath.png");
+insert into badge values
+(null,"alkhawarizmi.png");
+insert into badge values
+(null,"weierstrass.png"); 
+insert into badge values
+(null,"gauss.png");
+insert into badge values
+(null,"euler.png");
+insert into badge values
+(null,"descartes.png");
+insert into badge values
+(null,"cauchy.png");
+insert into badge values
+(null,"lagrange.png");
+insert into badge values
+(null,"pascal.png");
+insert into badge values
+(null,"riemann.png");
+insert into badge values
+(null,"perelman.png");
 
 INSERT INTO reussisucces 
 VALUES (NULL, '2017-05-09', '0', '1', '1');

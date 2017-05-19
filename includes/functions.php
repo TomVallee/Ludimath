@@ -73,7 +73,7 @@ function AfficherNotifSucces($userId)
     $badgeId=$res['badge_id'];
     if($count['count(*)']>9 && $badgeId=36)
     {
-        ReussirSucces(45, $userId);
+        ReussirSucces(46, $userId);
     }
     //notifssucces
     $prepQuery=getDb()->prepare("SELECT succes_id,reussite_id FROM reussisucces WHERE utilisateur_id=? AND afficher_succes=1");
