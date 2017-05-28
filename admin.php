@@ -182,6 +182,7 @@ else if (isset($_POST['raz']))
 
 else{
     if(isset($_POST['valid']) && $_POST['valid']=="true")
+    {
             //supression des résultats
             $prepQuery=getDb()->prepare("DELETE FROM notes");
             $prepQuery->execute();
@@ -200,6 +201,7 @@ else{
             //Raz des scores d'équipes
             $prepQuery=getDb()->prepare("UPDATE equipe SET equipe_score=0");
             $prepQuery->execute();
+    }
 ?>
 
 

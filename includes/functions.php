@@ -214,7 +214,6 @@ function afficheSuccesProfil($utilisateur_id){
     $prepQuery->execute(array($utilisateur_id));
     while($id=$prepQuery->fetch()){
         afficheContenuSucces($id['succes_id']); 
-        $i=$i+1;
         echo'</br>';
         }
     
@@ -496,6 +495,8 @@ function majExp($etudId)
     $prepQuery=getDb()->prepare($query);
     $prepQuery->execute(array($etudId));
     $sum=$prepQuery->fetch()["sum(note_score)"];
+    if($sum==null)
+        $sum=0;
     
     $query="UPDATE user SET utilisateur_experience=? WHERE utilisateur_id=?";
     $prepQuery=getDb()->prepare($query);

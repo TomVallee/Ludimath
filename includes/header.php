@@ -43,6 +43,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="login.php">Se connecter</a></li>
+                                    <li><a href="creation_compte.php">Créer un compte</a></li>
                                 </ul>
                             </li>
                             <?php } ?>
@@ -51,7 +52,7 @@
         </div>
         <!-- /.container -->
     </nav>
-<?php 
+    <?php 
  if (isUserConnected())
  {AfficherNotifSucces($_SESSION['id']); 
  SuccesConnection($_SESSION['id']);}?>

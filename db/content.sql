@@ -25,45 +25,57 @@ insert into niveau values
 (null,200);
 insert into niveau values
 (null,300);
+insert into niveau values
+(null,400);
+insert into niveau values
+(null,500);
+insert into niveau values
+(null,700);
+insert into niveau values
+(null,900);
+insert into niveau values
+(null,1200);
+insert into niveau values
+(null,1500);
+insert into niveau values
+(null,1800);
+insert into niveau values
+(null,2100);
+insert into niveau values
+(null,2500);
+insert into niveau values
+(null,2900);
+insert into niveau values
+(null,3300);
+insert into niveau values
+(null,3700);
+insert into niveau values
+(null,4100);
+insert into niveau values
+(null,4500);
+insert into niveau values
+(null,5000);
+insert into niveau values
+(null,100000);
 
 insert into user values
-(null, "Bazin", "Tom","tbazin","tbazin",10,1,0,1,36);
-insert into user values
-(null, "Vallee", "Tom","tvallee","tvallee",10,1,0,1,36);
-insert into user values
-(null, "Hazard", "Sylvain","shazard","shazard",10,1,0,1,36);
-insert into user values
-(null, "Guerin", "Noemie","nguerin","nguerin",10,1,0,1,36);
-insert into user values
-(null, "Saracco", "Jerome","jsaracco","jsaracco",80,8,0,1,36);
-insert into user values
-(null, "Balssa", "Floriane","fbalssa","fblassa",15,5,0,2,36);
-insert into user values
-(null, "Dupond", "Jules","jdupond","jdupond",20,4,0,2,36);
-insert into user values
-(null, "Rigal", "Julien","jrigal","jrigal",20,6,0,2,36);
-insert into user values
-(null, "Perrie", "Quentin","qperrie","qperrie",20,9,0,2,36);
-insert into user values
-(null, "Sta", "Juliette","jsta","jsta",20,4,0,2,36);
-insert into user values
-(null,"Admin","Admin","admin","admin",0,1,1,3,36);
+(null,"Admin","Admin","admin","admin","admin",0,1,1,3,36);
 
 
 insert into top values 
-(0,"Général",5,4,1,3,2);
+(0,"Général",null,null,null,null,null);
 insert into top values
-(1,"Continuité et limites",5,1,3,2,4);
+(1,"Continuité et limites",null,null,null,null,null);
 insert into top values
-(2,"Suite",5,4,1,2,3);
+(2,"Suite",null,null,null,null,null);
 insert into top values
-(3,"Integration",5,4,3,2,1);
+(3,"Integration",null,null,null,null,null);
 insert into top values
-(4,"Matrice",5,2,1,4,3);
+(4,"Matrice",null,null,null,null,null);
 insert into top values
-(5,"Etude de fonctions",1,2,3,4,5);
+(5,"Etude de fonctions",null,null,null,null,null);
 insert into top values
-(6,"Complexes",1,2,3,4,5);
+(6,"Complexes",null,null,null,null,null);
 
 insert into theme values
 (null,"Etude de fonctions",5);
@@ -447,7 +459,7 @@ insert into succes values
 insert into succes values
 (null,"On va pas en faire tout un foin",0,"Réussir 3 fois l'exercice Calcul de dérivée composée 1");
 insert into succes values
-(null,"Quand est-ce qu'on Blaise, Pascal ?",0,"Réussir 3 fois l'exercice Tangente à une courbe polynemiale");
+(null,"Quand est-ce qu'on Blaise, Pascal ?",0,"Réussir 3 fois l'exercice Tangente à une courbe polynômiale");
 insert into succes values
 (null,"Riemann et les lapins crétins",0,"Réussir tous les exercices sur les intégrales");
 insert into succes values
@@ -546,24 +558,3 @@ insert into badge values
 (null,"riemann.png");
 insert into badge values
 (null,"perelman.png");
-
-INSERT INTO reussisucces 
-VALUES (NULL, '2017-05-09', '0', '1', '1');
-INSERT INTO reussisucces
-VALUES (NULL, '2017-05-09', '0', '4', '1');
-INSERT INTO reussisucces
-VALUES (NULL, '2017-05-09', '0', '6', '1');
-INSERT INTO reussisucces 
-VALUES (NULL, '2017-05-09', '0', '7', '1');
-INSERT INTO reussisucces 
-VALUES (NULL, '2017-05-09', '0', '10', '1');
-INSERT INTO reussisucces 
-VALUES (NULL, '2017-05-09', '0', '11', '1');
-INSERT INTO reussisucces 
-VALUES (NULL, '2017-05-09', '0', '15', '1');
-INSERT INTO reussisucces 
-VALUES (NULL, '2017-05-09', '0', '16', '1');
-INSERT INTO reussisucces 
-VALUES (NULL, '2017-05-09', '0', '20', '1');
-INSERT INTO reussisucces 
-VALUES (NULL, '2017-05-09', '0', '32', '1');

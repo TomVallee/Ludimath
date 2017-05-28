@@ -40,6 +40,7 @@ create table user (
     utilisateur_nom varchar(100),
     utilisateur_prenom varchar(100),
     utilisateur_login varchar(100),
+    utilisateur_connec varchar(22),
     utilisateur_mdp varchar(100),
     utilisateur_experience integer not null,
     utilisateur_niveau integer,
