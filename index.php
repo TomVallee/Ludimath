@@ -17,7 +17,7 @@ session_start();
                     require_once "includes/afficheSucces.php";
                 ?>
                     <div class="container">
-                        <center><img alt="logo" src="/Ludimath/images/ludimath.png"></center>
+                        <center><img alt="logo" src="images/ludimath.png"></center>
 
                         <div class="div3">
                             <p> Au début de l'année, les étudiants qui arrivent à  l'ENSC ont des profils très variés et n'ont pas tous les mêmes compétences en mathématiques. C'est pourquoi un parcours différencié leur est proposé afin d'harmoniser les connaissances au sein d'une promotion et de pouvoir débuter les enseignements dans les meilleures conditions. Au fil des années, Mme Coralie Eyraud-Dubois, responsable du parcours différencié, a reçu un certain nombre de retours sur cet outil de la part des étudiants, notamment sur l'interface pas toujours adaptée ni engageante. Notre objectif a donc été de développer un nouveau système, complétant l'existant, qui soit ludique afin d'optimiser l'expérience des étudiants participant au parcours différencié de mathématiques.

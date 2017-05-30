@@ -445,25 +445,25 @@ insert into succes values
 insert into succes values
 (null,null,null,null);
 insert into succes values
-(null,"Les fondements de l'algèbre",0,"Réussir 3 fois l'exercice Variations d'un trinôme du second degré 1");
+(null,"Les fondements de l'algèbre",0,"Réussir 3 fois l'exercice Variations d'un trinôme du second degré 1.  <a href='mathematiciens.php?id=1'>Plus d'infos</a>");
 insert into succes values
-(null,"Vers l'infini et au-delà",0,"Réussir tous les exercices sur les limites");
+(null,"Vers l'infini et au-delà",0,"Réussir tous les exercices sur les limites.  <a href='mathematiciens.php?id=2'>Plus d'infos</a>");
 insert into succes values
-(null,"Gauss Buster",0,"Réussir tous les exercices sur les matrices");
+(null,"Gauss Buster",0,"Réussir tous les exercices sur les matrices.  <a href='mathematiciens.php?id=3'>Plus d'infos</a>");
 insert into succes values
-(null,"La fille d'Euler",0,"Réussir tous les exercices sur les complexes");
+(null,"La fille d'Euler",0,"Réussir tous les exercices sur les complexes.  <a href='mathematiciens.php?id=4'>Plus d'infos</a>");
 insert into succes values
-(null,"Les dessous Descartes",0,"Réussir tous les exercices sur l'étude de fonctions");
+(null,"Les dessous Descartes",0,"Réussir tous les exercices sur l'étude de fonctions.  <a href='mathematiciens.php?id=5'>Plus d'infos</a>");
 insert into succes values
-(null,"L'arbre qui Cauchy la forêt",0,"Réussir tous les exercices sur la continuité");
+(null,"L'arbre qui Cauchy la forêt",0,"Réussir tous les exercices sur la continuité.  <a href='mathematiciens.php?id=6'>Plus d'infos</a>");
 insert into succes values
-(null,"On va pas en faire tout un foin",0,"Réussir 3 fois l'exercice Calcul de dérivée composée 1");
+(null,"On va pas en faire tout un foin",0,"Réussir 3 fois l'exercice Calcul de dérivée composée 1.  <a href='mathematiciens.php?id=7'>Plus d'infos</a>");
 insert into succes values
-(null,"Quand est-ce qu'on Blaise, Pascal ?",0,"Réussir 3 fois l'exercice Tangente à une courbe polynômiale");
+(null,"Quand est-ce qu'on Blaise, Pascal ?",0,"Réussir 3 fois l'exercice Tangente à une courbe polynômiale.  <a href='mathematiciens.php?id=8'>Plus d'infos</a>");
 insert into succes values
-(null,"Riemann et les lapins crétins",0,"Réussir tous les exercices sur les intégrales");
+(null,"Riemann et les lapins crétins",0,"Réussir tous les exercices sur les intégrales.  <a href='mathematiciens.php?id=9'>Plus d'infos</a>");
 insert into succes values
-(null,"La réussite est une récompense en soi",1,"Réussir 10 succès et toujours avoir le badge LudiMath");
+(null,"La réussite est une récompense en soi",1,"Réussir 10 succès et toujours avoir le badge LudiMath.  <a href='mathematiciens.php?id=10'>Plus d'infos</a>");
 
 
 insert into badge values
