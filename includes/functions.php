@@ -71,7 +71,7 @@ function AfficherNotifSucces($userId)
     $prepQuery->execute(array($userId));
     $res=$prepQuery->fetch();    
     $badgeId=$res['badge_id'];
-    if($count['count(*)']>9 && $badgeId=36)
+    if($count['count(*)']>9 && $badgeId==36)
     {
         ReussirSucces(46, $userId);
     }
@@ -79,15 +79,16 @@ function AfficherNotifSucces($userId)
     $prepQuery=getDb()->prepare("SELECT succes_id,reussite_id FROM reussisucces WHERE utilisateur_id=? AND afficher_succes=1");
     $prepQuery->execute(array($userId));    
     foreach($prepQuery as $id){ 
+        echo' <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        Succes Obtenu ! 
+        ';
+        afficheContenuSucces($id['succes_id']);
+        echo'</div>';
         $query="UPDATE reussisucces SET afficher_succes=0 WHERE reussite_id=:id";           
         $prepQuery=getDb()->prepare($query);
         $prepQuery->bindValue("id",$id['reussite_id']);
         $prepQuery->execute();
-       echo' <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        Succes Obtenu ! 
-        ';afficheContenuSucces($id['succes_id']);
-        echo'</div>';
         }
 }
 
@@ -220,39 +221,40 @@ function afficheSuccesProfil($utilisateur_id){
 }
 //affiche les succes du joueur
 function afficheSucces($utilisateur_id){
-    $query ="Select succes_id from reussisucces where utilisateur_id=?";
+    $query ="Select succes_id from reussisucces where utilisateur_id=? order by succes_id";
     $prepQuery=getDB()->prepare($query);
     $prepQuery->execute(array($utilisateur_id));
     
     foreach($prepQuery as $id){
+        if($id['succes_id']!=36)
+        {
         afficheContenuSucces($id['succes_id']); 
         echo'</br>';
         }
+    }
         
-    $query ="SELECT succes_id,succes_cache FROM succes WHERE succes_id NOT IN (SELECT succes_id from reussisucces where utilisateur_id=1) Order By succes_cache";
+    $query ="SELECT succes_id,succes_cache FROM succes WHERE succes_id NOT IN (SELECT succes_id from reussisucces where utilisateur_id=?) Order By succes_cache,succes_id";
     $prepQuery=getDB()->prepare($query);
     $prepQuery->execute(array($utilisateur_id));
     foreach($prepQuery as $id){
+        if($id['succes_id']!=36)
+        {
         afficheSuccesNonObtenu($id['succes_id']);  
         echo'</br>';
         }
+    }
     
 }
 
 //Changer le badge de l'utilisateur
-function changerbadge($badgeid,$id){
+function changerbadge($badgeid,$userId){
      
-    $query = "Select utilisateur_id from user where utilisateur_login=?";
-    $prepQuery=getDB()->prepare($query);
-    $prepQuery->execute(array($id));
-    $userid=$prepQuery->fetch();
-    $userid=$userid['utilisateur_id'];
-    if(asucces($badgeid,$userid)!=0){
-        echo"oui.";
+    if(asucces($badgeid,$userId)!=0){
+        echo "oui.";
     $query="UPDATE user SET badge_id = :badge WHERE utilisateur_id = :user";
     $prepQuery = getDB()->prepare($query);
     $prepQuery->bindValue('badge', $badgeid, PDO::PARAM_INT);
-    $prepQuery->bindValue('user', $userid, PDO::PARAM_INT);
+    $prepQuery->bindValue('user', $userId, PDO::PARAM_INT);
     
         $prepQuery->execute();
         redirect("succes.php");
@@ -569,24 +571,20 @@ function majSuccesNiveau($etudId)
     $prepQuery=getDb()->prepare($query);
     $prepQuery->execute(array($etudId));
     $niveau=$prepQuery->fetch()["utilisateur_niveau"];
-    $succes=0;
     //Succès niveau 2
     if(!aSucces(1,$etudId) && $niveau>=2)
     {
-       $succes=1;
+       ReussirSucces(1,$etudId);
     }
     //Succès niveau 10
     if(!aSucces(2,$etudId) && $niveau>=10)
     {
-        $succes=2;
+        ReussirSucces(2,$etudId);
     }
     //Succès niveau 20
     if(!aSucces(3,$etudId) && $niveau>=20)
     {
-        $succes=3;
-    }
-    if($succes!=0){
-         ReussirSucces($succes,$etudId);
+        ReussirSucces(3,$etudId);
     }
 }
 
@@ -690,10 +688,10 @@ function majSuccesTop($etudId)
 //Maj des succès d'équipe (10 à 12)
 function majSuccesEquipe($etudId)
 {
-    $query="SELECT sum(note_score) FROM notes WHERE utilisateur_id IN (SELECT utilisateur_id FROM user WHERE equipe_id = (SELECT equipe_id FROM user WHERE utilisateur_id=?))";
+    $query="SELECT equipe_score FROM equipe WHERE equipe_id=(SELECT equipe_id FROM user WHERE utilisateur_id=?)";
     $prepQuery=getDb()->prepare($query);
     $prepQuery->execute(array($etudId));
-    $scoreEquipe=intval($prepQuery->fetch()["sum(note_score)"]);
+    $scoreEquipe=intval($prepQuery->fetch()["equipe_score"]);
     
     //Obtenir un score d'équipe de 500 (10)
     if(!aSucces(10,$etudId) && $scoreEquipe>500)

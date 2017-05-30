@@ -68,8 +68,8 @@ if (isset($_POST['login']) && isset($_POST['passwd']) && isset($_POST['lName']) 
             $prepQuery->bindValue('equipe',$equipe,PDO::PARAM_INT);
             $prepQuery->execute();
             $_SESSION['create']=true;
-            echo'<div class="alert alert-danger col-sm-11">
-                                    <strong>Bienvenue</strong>
+            echo'<div class="alert alert-success col-sm-11">
+                                    <strong>Compte créé avec succès.</strong>
                                 </div>';
         }
     }

@@ -19,7 +19,6 @@ if($equi1["equipe_score"]+$equi2["equipe_score"]!=0)
 else
     $img=0;
 
-echo $img;
 ?>
 
     <!doctype html>
