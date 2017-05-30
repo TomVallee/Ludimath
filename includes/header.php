@@ -16,6 +16,7 @@
                     <a class="navbar-brand" href="cours.php"><span class="glyphicon glyphicon-book"></span> Cours</a>
                     <a class="navbar-brand" href="tops.php"><span class="glyphicon glyphicon-book"></span> Tops</a>
                     <a class="navbar-brand" href="succes.php"><span class="glyphicon glyphicon-lock"></span> Succes </a>
+                    <a class="navbar-brand" href="mathematiciens.php"><span class="glyphicon glyphicon-lock"></span> Mathématiciens </a>
 
                     <?php if(isUserAdmin($_SESSION["id"])){ ?>
                         <a class="navbar-brand" href="admin.php"><span class="glyphicon glyphicon-pencil"></span>Administration</a>

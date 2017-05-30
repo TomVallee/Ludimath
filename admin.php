@@ -2,17 +2,16 @@
 require_once "includes/functions.php";
 session_start();
 ?>
-<!doctype html>
-<html>
+    <!doctype html>
+    <html>
     <?php require_once "includes/head.php"; ?>
 
-    <body>
-        <div class="container">
-            <?php require_once "includes/header.php"; ?>
+        <body>
+            <div class="container">
+                <?php require_once "includes/header.php"; ?>
 
 
-            <?php
-<<<<<<< HEAD
+                    <?php
 /*-- Modification du mot de passe */
 if (!empty($_POST['mdpOld']) and !empty($_POST['mdpNew']))
 {
@@ -46,26 +45,22 @@ if (!empty($_POST['mdpOld']) and !empty($_POST['mdpNew']))
         }
     }
 }
-        
-=======
-<<<<<<< Updated upstream
 
->>>>>>> 66e6a2b969e428b5dbd16216f2cdbf23b225a0d8
 if (isset($_POST['raz']))
 {
     ?>
-                <form action="" method="POST" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-sm-4">Confirmer ?</div>
-                        <div class="col-sm-4">
-                            <button type="submit" name="valid" value="true" class="btn btn-primary"><span class='glyphicon glyphicon-ok'></span>Oui</button>
-                        </div>
-                        <div class="col-sm-4">
-                            <button type="submit" name="valid" value="false" class="btn btn-primary"><span class='glyphicon glyphicon-remove'></span>Non</button>
-                        </div>
-                    </div>
-                </form>
-                <?php
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-sm-4">Confirmer ?</div>
+                                <div class="col-sm-4">
+                                    <button type="submit" name="valid" value="true" class="btn btn-primary"><span class='glyphicon glyphicon-ok'></span>Oui</button>
+                                </div>
+                                <div class="col-sm-4">
+                                    <button type="submit" name="valid" value="false" class="btn btn-primary"><span class='glyphicon glyphicon-remove'></span>Non</button>
+                                </div>
+                            </div>
+                        </form>
+                        <?php
 }
 
 else{
@@ -103,44 +98,12 @@ else{
                     foreach ($param as $filename) {
                         if (is_file($filename)) {
                             unlink($filename);
-=======
-            if (isset($_FILES['File'])) {
-                //Enregistrement du fichier
-                $erreur = true;
-                $file_name = $_FILES['File']['name'];
-                $file_size = $_FILES['File']['size'];
-                $file_tmp = $_FILES['File']['tmp_name'];
-                $file_type = $_FILES['File']['type'];
-                $extension = strrchr($_FILES['File']['name'], '.'); //connaître l'extension du fichier
-                $expensions = array(".zip");
-
-                if (in_array($extension, $expensions) === false) {
-                    $erreur = FALSE;
-                }
-                if ($erreur == TRUE) {
-                    move_uploaded_file($file_tmp, "resultats/" . $file_name);
-                }
-
-                //Dézippage du fichier
-                $sauvegarde = glob("resultats/*.zip");
-                $zip = new ZipArchive;
-                if (!empty($sauvegarde)) {
-                    $sauvegarde = $sauvegarde[0];
-                    if ($zip->open($sauvegarde) === TRUE) {
-                        $zip->extractTo('resultats');
-                        $zip->close();
-                        //Suppression du zip
-                        unlink($sauvegarde);
-                        //Suppression de tous les fichiers/dossiers inutiles
-                        $param = glob("resultats/class/*");
-                        foreach ($param as $filename) {
-                            if (is_file($filename)) {
-                                unlink($filename);
-                            } else if (is_dir($filename) && $filename != "resultats/class/score") {
-                                recursiveRemoveDirectory($filename);
-                            }
->>>>>>> Stashed changes
                         }
+                        else if (is_dir($filename) && $filename!="resultats/class/score")
+                        {
+                            recursiveRemoveDirectory($filename);
+                        }
+                    }
                         //Suppression de tous les fichiers/dossiers inutiles en .xxx
                         $param = glob("resultats/class/.*");
                         unset($param[0], $param[1]);
@@ -237,7 +200,6 @@ else{
                     } else {
                         echo 'échec';
                     }
-<<<<<<< Updated upstream
                     echo "<div class='container'>";
                     echo "<div class='alert alert-success'>Mise à jour réussie.</div>";
                     echo "</div>";
@@ -245,7 +207,7 @@ else{
                     echo 'échec';
                 }
     }
-}
+
     else if(isset($_POST['valid']) && $_POST['valid']=="true")
     {
             //supression des résultats
@@ -272,147 +234,106 @@ else{
         echo "</div>";
     }
 ?>
-=======
-                }
-            } else if (isset($_POST['raz'])) {
-                ?>
-                <form action="" method="POST" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-sm-4">Confirmer ?</div>
-                        <div class="col-sm-4">
-                            <button type="submit" name="valid" value="true" class="btn btn-primary"><span class='glyphicon glyphicon-ok'></span>Oui</button>
-                        </div>
-                        <div class="col-sm-4">
-                            <button type="submit" name="valid" value="false" class="btn btn-primary"><span class='glyphicon glyphicon-remove'></span>Non</button>
-                        </div>
-                    </div>
-                </form>
-                <?php
-            } else {
-                if (isset($_POST['valid']) && $_POST['valid'] == "true") {
-                    //supression des résultats
-                    $prepQuery = getDb()->prepare("DELETE FROM notes");
-                    $prepQuery->execute();
-
-                    //MAJ des tops
-                    for ($i = 0; $i <= 6; $i++)
-                        majTop($i);
-                    //suppression des succès réussis
-                    $prepQuery = getDb()->prepare("DELETE FROM reussisucces");
-                    $prepQuery->execute();
->>>>>>> Stashed changes
-
-                    //suppression des étudiants
-                    $prepQuery = getDb()->prepare("DELETE FROM user WHERE utilisateur_admin=0");
-                    $prepQuery->execute();
-
-                    //Raz des scores d'équipes
-                    $prepQuery = getDb()->prepare("UPDATE equipe SET equipe_score=0");
-                    $prepQuery->execute();
-                }
-                ?>
 
 
-                <div class="well" style="height: 150px; margin-top: 50px;">
-                    <h3 class="card-title">Mettre à jour le parcours</h3>
-                    <form action="" method="POST" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <div class="col-sm-6">
-                                <input type="file" name="File" />
+                            <div class="well" style="height: 150px; margin-top: 50px;">
+                                <h3 class="card-title">Mettre à jour le parcours</h3>
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <div class="col-sm-6">
+                                            <input type="file" name="File" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-primary"><span class='glyphicon glyphicon-save'></span>Mettre à jour</button>
+                                    </div>
                             </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <button type="submit" class="btn btn-primary"><span class='glyphicon glyphicon-save'></span>Mettre à jour</button>
-                        </div>
-<<<<<<< HEAD
-                    </div>
-                    <div class="container">
-                        <div class="row">
-
-                            <!-- Fil d'ariane -->
-                            <div class="col-lg-8">
+                            <div class="well" style="height: 150px;">
+                                <h3 class="card-title">Remettre à zéro le parcours</h3>
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    <div class="col-sm-4">
+                                        <button type="submit" name="raz" class="btn btn-primary"><span class='glyphicon glyphicon-save'></span>Remettre à zéro</button>
+                                    </div>
+                                </form>
                             </div>
-                        </div>
+                            <div class="container">
+                                <div class="row">
 
-                        <!-- Titre du contenu -->
-                        <div class="row">
-                            <div class="col-lg-8 col-lg-offset-2">
-                                <div class="text-center">
-                                    <h1 class="name">
+                                    <!-- Fil d'ariane -->
+                                    <div class="col-lg-8">
+                                    </div>
+                                </div>
+
+                                <!-- Titre du contenu -->
+                                <div class="row">
+                                    <div class="col-lg-8 col-lg-offset-2">
+                                        <div class="text-center">
+                                            <h1 class="name">
                             Modification du mot de passe 
                         </h1>
-                                    <hr class="star-primary">
+                                            <hr class="star-primary">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-lg-8 col-lg-offset-2">
-                                <div class="well">
-                                    <?php 
+                                <div class="row">
+                                    <div class="col-lg-8 col-lg-offset-2">
+                                        <div class="well">
+                                            <?php 
                         if (isset($error))
                         {
                         ?>
-                                        <!-- Erreur lors de la modification du profil -->
-                                        <div class="alert alert-danger">
-                                            <strong>Erreur !</strong>
-                                            <?= $error ?>
-                                        </div>
-                                        <?php
+                                                <!-- Erreur lors de la modification du profil -->
+                                                <div class="alert alert-danger">
+                                                    <strong>Erreur !</strong>
+                                                    <?= $error ?>
+                                                </div>
+                                                <?php
                         }
                         ?>
-                                            <form role="form" method="post" action="admin.php">
-                                                <?php
+                                                    <form role="form" method="post" action="admin.php">
+                                                        <?php
                             if(isset($move))
                             { ?>
-                                                    <div class="alert alert-success text-left" role="alert">
-                                                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Mot de passe modifié !
-                                                    </div>
-                                                    <?php
+                                                            <div class="alert alert-success text-left" role="alert">
+                                                                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Mot de passe modifié !
+                                                            </div>
+                                                            <?php
                             }
                             ?>
-                                                        <!-- Modification du mot de passe -->
-                                                        <fieldset class="form-group">
-                                                            <legend>Modifier le mot de passe</legend>
-                                                            <div class="form-group">
-                                                                <label for="mdpOld">Ancien mot de passe</label>
-                                                                <input type="password" class="form-control" id="mdpOld" name="mdpOld">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="mdpNew">Nouveau mot de passe</label>
-                                                                <input type="password" class="form-control" id="mdpNew" name="mdpNew">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="mdpTest">Confirmation du mot de passe</label>
-                                                                <input type="password" class="form-control" id="mdpTest" name="mdpTest">
-                                                            </div>
-                                                        </fieldset>
-                                                        <div class="form-group text-center">
-                                                            <button type="submit" class="btn btn-default btn-primary">Valider</button>
-                                                        </div>
-                                            </form>
+                                                                <!-- Modification du mot de passe -->
+                                                                <fieldset class="form-group">
+                                                                    <legend>Modifier le mot de passe</legend>
+                                                                    <div class="form-group">
+                                                                        <label for="mdpOld">Ancien mot de passe</label>
+                                                                        <input type="password" class="form-control" id="mdpOld" name="mdpOld">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="mdpNew">Nouveau mot de passe</label>
+                                                                        <input type="password" class="form-control" id="mdpNew" name="mdpNew">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="mdpTest">Confirmation du mot de passe</label>
+                                                                        <input type="password" class="form-control" id="mdpTest" name="mdpTest">
+                                                                    </div>
+                                                                </fieldset>
+                                                                <div class="form-group text-center">
+                                                                    <button type="submit" class="btn btn-default btn-primary">Valider</button>
+                                                                </div>
+                                                    </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <?php } ?>
-=======
-                    </form>
-                </div>
-                <div class="well" style="height: 150px;">
-                    <h3 class="card-title">Remettre à zéro le parcours</h3>
-                    <form action="" method="POST" enctype="multipart/form-data">
-                        <div class="col-sm-4">
-                            <button type="submit" name="raz" class="btn btn-primary"><span class='glyphicon glyphicon-save'></span>Remettre à zéro</button>
-                        </div>
-                    </form>
-                </div>
+                            </form>
+
+            </div>
+
             <?php } ?>
-        </div>
->>>>>>> 66e6a2b969e428b5dbd16216f2cdbf23b225a0d8
+                </div>
 
-        <?php require_once "includes/scripts.php"; ?>
-        <?php require_once "includes/footer.php"; ?>
-    </body>
+                <?php require_once "includes/scripts.php"; ?>
+                    <?php require_once "includes/footer.php"; ?>
+        </body>
 
-</html>
+    </html>
