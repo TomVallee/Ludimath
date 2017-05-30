@@ -1,6 +1,6 @@
 <div class="footer">
     <div class="container-fluid">
-        <div>Ludimath Projet Transdisciplinaire 1ère année ENSC.</div>
-        <div>Développé par Noémie Guérin-Bessède, Tom Vallée, Tom Bazin et Sylvain Hazard.</div>
+        <p id="paraFooter" class="text-muted">Ludimath Projet Transdisciplinaire 1ère année ENSC.</p>
+        <p id="paraFooter" class="text-muted">Développé par Noémie Guérin-Bessède, Tom Vallée, Tom Bazin et Sylvain Hazard.</p>
     </div>
 </div>

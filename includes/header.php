@@ -4,7 +4,7 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="/ludimath/index.php">
-                    <img alt="logo" src="/Ludimath/images/inp.jpeg">
+                    <img alt="logo" class="img-responsive" src="/Ludimath/images/logo.png">
                 </a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-target">
                     <span class="icon-bar"></span>
@@ -20,7 +20,6 @@
                     <?php if(isUserAdmin($_SESSION["id"])){ ?>
                         <a class="navbar-brand" href="admin.php"><span class="glyphicon glyphicon-pencil"></span>Administration</a>
                         <?php } } ?>
-
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse-target">
 
