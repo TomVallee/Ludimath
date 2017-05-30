@@ -358,7 +358,7 @@ function AfficherTop($idTop)
     $titre=$prepQuery->fetch();
     
     echo"<br/>";
-    echo"<div class='div2'>";
+    echo"<span class='div2'>";
     echo"<h4><center>".$titre['top_nom']."</center></h4>";
     
     echo "<ul>";
@@ -399,24 +399,24 @@ function AfficherTop($idTop)
                 }
                 else
                 {
-                    echo"Place à prendre";
+                    echo"Places à prendre";
                 }
             }
             else
             {
-                echo"Place à prendre";
+                echo"Places à prendre";
             }
         }
         else
         {
-            echo"Place à prendre";
+            echo"Places à prendre";
         }
     }//reflechir aux noms trop grands
     else
     {
-        echo"Place à prendre";
+        echo"Places à prendre";
     }
-    echo"</ul>";echo"</div>"; echo"<br/>";
+    echo"</ul>";echo"</span>";
     
 }
 

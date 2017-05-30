@@ -13,8 +13,8 @@
                 </button>
                 <?php if (isUserConnected()) { ?>
                     <a class="navbar-brand" href="equipe.php"><span class="glyphicon glyphicon-flag"></span> Equipe</a>
-                    <a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-book"></span> Cours</a>
-                    <a class="navbar-brand" href="exercices.php"><span class="glyphicon glyphicon-book"></span> Exercices</a>
+                    <a class="navbar-brand" href="cours.php"><span class="glyphicon glyphicon-book"></span> Cours</a>
+                    <a class="navbar-brand" href="tops.php"><span class="glyphicon glyphicon-book"></span> Tops</a>
                     <a class="navbar-brand" href="succes.php"><span class="glyphicon glyphicon-lock"></span> Succes </a>
 
                     <?php if(isUserAdmin($_SESSION["id"])){ ?>

@@ -3,16 +3,16 @@ require_once "includes/functions.php";
 session_start();
 if (isset($_POST['login']) && isset($_POST['passwd']) && isset($_POST['lName']) && isset($_POST['fName']))
 {
+    $connec=escape($_POST['login']);
+    $passwd = escape($_POST['passwd']);
+    $lName=escape($_POST['lName']);
+    $fName=escape($_POST['fName']);
     if($_POST['passwd']!=$_POST['passwordConf'])
     {
         $error="Les mots de passe ne correspondent pas.";
     }
     else
     {
-        $connec=escape($_POST['login']);
-        $passwd = escape($_POST['passwd']);
-        $lName=escape($_POST['lName']);
-        $fName=escape($_POST['fName']);
 
         //Enlever les accents
         $nom=$_POST['lName'];

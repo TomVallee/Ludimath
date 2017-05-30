@@ -13,7 +13,26 @@ session_start();
 
 
             <?php
-if(isset($_FILES['File']))
+
+if (isset($_POST['raz']))
+{
+    ?>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-sm-4">Confirmer ?</div>
+                        <div class="col-sm-4">
+                            <button type="submit" name="valid" value="true" class="btn btn-primary"><span class='glyphicon glyphicon-ok'></span>Oui</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="submit" name="valid" value="false" class="btn btn-primary"><span class='glyphicon glyphicon-remove'></span>Non</button>
+                        </div>
+                    </div>
+                </form>
+                <?php
+}
+
+else{
+    if(isset($_FILES['File']))
 {
     //Enregistrement du fichier
      $erreur = true;
@@ -158,30 +177,15 @@ if(isset($_FILES['File']))
                             majSucces($etudId);
                         }
                     }
+                    echo "<div class='container'>";
+                    echo "<div class='alert alert-success'>Mise à jour réussie.</div>";
+                    echo "</div>";
                 } else {
                     echo 'échec';
                 }
     }
 }
-else if (isset($_POST['raz']))
-{
-    ?>
-                <form action="" method="POST" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-sm-4">Confirmer ?</div>
-                        <div class="col-sm-4">
-                            <button type="submit" name="valid" value="true" class="btn btn-primary"><span class='glyphicon glyphicon-ok'></span>Oui</button>
-                        </div>
-                        <div class="col-sm-4">
-                            <button type="submit" name="valid" value="false" class="btn btn-primary"><span class='glyphicon glyphicon-remove'></span>Non</button>
-                        </div>
-                    </div>
-                </form>
-                <?php
-}
-
-else{
-    if(isset($_POST['valid']) && $_POST['valid']=="true")
+    else if(isset($_POST['valid']) && $_POST['valid']=="true")
     {
             //supression des résultats
             $prepQuery=getDb()->prepare("DELETE FROM notes");
@@ -201,6 +205,10 @@ else{
             //Raz des scores d'équipes
             $prepQuery=getDb()->prepare("UPDATE equipe SET equipe_score=0");
             $prepQuery->execute();
+        
+        echo "<div class='container'>";
+        echo "<div class='alert alert-success'>Remise à zéro réussie.</div>";
+        echo "</div>";
     }
 ?>
 
