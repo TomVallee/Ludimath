@@ -163,14 +163,14 @@ else
             {
                 echo"</br>";
                 echo"\t Né en en 1966, Grigori Perelman s’est vu décerner la médaille Fields et le prix Clay suite à la résolution d’un des septs problèmes du prix du millénaire : la conjecture de Poincaré. Il a refusé ces deux récompenses.";
-                echo"</br>";echo"</br>";echo"Succes associé : ";
-                afficheContenuSucces(46);
+                echo"</br>";echo"</br>";echo"Succes associé : Succès le plus difficile à avoir de LudiMath. Indice : Reste humble";echo"</br>";
+AfficherBadgeId(46, 100);
+                
                 
             }
             
             ?>
         </div>
-        
         
         </div>
     </body>
