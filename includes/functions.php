@@ -209,16 +209,6 @@ function afficheSuccesNonObtenu($id){
     }    
 }
 
-function afficheSuccesProfil($utilisateur_id){
-    $query ="Select succes_id from reussisucces where utilisateur_id=? ORDER BY reussite_date limit 0,3";
-    $prepQuery=getDB()->prepare($query);
-    $prepQuery->execute(array($utilisateur_id));
-    while($id=$prepQuery->fetch()){
-        afficheContenuSucces($id['succes_id']); 
-        echo'</br>';
-        }
-    
-}
 //affiche les succes du joueur
 function afficheSucces($utilisateur_id){
     $query ="Select succes_id from reussisucces where utilisateur_id=? order by succes_id";
@@ -310,7 +300,7 @@ function Afficherbadgeprofil($badge_id,$taille)
         $prepQuery->execute(array($badge_id));
         $res=$prepQuery->fetch();
         $badge=$res['badge_icone'];
-        echo"<img src='images/badges/".$badge."' alt='".$badge."' height=".$taille."width=".$taille." >";
+        echo"<a href='changerbadge.php?badge=".$badge_id."'><img src='images/badges/".$badge."' alt='".$badge."' height=".$taille."width=".$taille." ></a>";
     }
     else {
         echo"<img src='images/badges/ludimath.png' height=".$taille."width=".$taille." >";

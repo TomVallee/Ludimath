@@ -13,7 +13,40 @@ session_start();
 
 
             <?php
-
+/*-- Modification du mot de passe */
+if (!empty($_POST['mdpOld']) and !empty($_POST['mdpNew']))
+{
+    $reqUser = getDb()->prepare('SELECT * FROM user WHERE utilisateur_id=?');
+    $reqUser->execute(array($_SESSION['id']));
+    $user = $reqUser->fetch();
+    $mdp = $user['utilisateur_mdp'];
+    
+    
+    $mdpOld = $_POST['mdpOld'];
+    $mdpNew= $_POST['mdpNew'];
+    $mdpTest = $_POST['mdpTest'];
+    if($mdpTest != null)
+    {
+        if($mdpOld == $mdp)
+        {
+            if ($mdpNew == $mdpTest)
+            { 
+                $reqMdp = getDb()->prepare('UPDATE user SET utilisateur_mdp=? WHERE utilisateur_id=?');
+                $reqMdp->execute(array($mdpNew, $_SESSION['id']));
+                $move=1;
+            }
+            else 
+            {
+                $error = "Les deux valeurs ne correspondent pas";         
+            }
+        }
+        else
+        {
+            $error = "La valeur ne correspond pas à votre ancien mot de passe";
+        }
+    }
+}
+        
 if (isset($_POST['raz']))
 {
     ?>
@@ -232,6 +265,75 @@ else{
                                     <button type="submit" name="raz" class="btn btn-primary"><span class='glyphicon glyphicon-save'></span>Remettre à zéro le parcours</button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+
+                            <!-- Fil d'ariane -->
+                            <div class="col-lg-8">
+                            </div>
+                        </div>
+
+                        <!-- Titre du contenu -->
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <div class="text-center">
+                                    <h1 class="name">
+                            Modification du mot de passe 
+                        </h1>
+                                    <hr class="star-primary">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <div class="well">
+                                    <?php 
+                        if (isset($error))
+                        {
+                        ?>
+                                        <!-- Erreur lors de la modification du profil -->
+                                        <div class="alert alert-danger">
+                                            <strong>Erreur !</strong>
+                                            <?= $error ?>
+                                        </div>
+                                        <?php
+                        }
+                        ?>
+                                            <form role="form" method="post" action="admin.php">
+                                                <?php
+                            if(isset($move))
+                            { ?>
+                                                    <div class="alert alert-success text-left" role="alert">
+                                                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Mot de passe modifié !
+                                                    </div>
+                                                    <?php
+                            }
+                            ?>
+                                                        <!-- Modification du mot de passe -->
+                                                        <fieldset class="form-group">
+                                                            <legend>Modifier le mot de passe</legend>
+                                                            <div class="form-group">
+                                                                <label for="mdpOld">Ancien mot de passe</label>
+                                                                <input type="password" class="form-control" id="mdpOld" name="mdpOld">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="mdpNew">Nouveau mot de passe</label>
+                                                                <input type="password" class="form-control" id="mdpNew" name="mdpNew">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="mdpTest">Confirmation du mot de passe</label>
+                                                                <input type="password" class="form-control" id="mdpTest" name="mdpTest">
+                                                            </div>
+                                                        </fieldset>
+                                                        <div class="form-group text-center">
+                                                            <button type="submit" class="btn btn-default btn-primary">Valider</button>
+                                                        </div>
+                                            </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <?php } ?>
