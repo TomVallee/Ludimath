@@ -22,8 +22,7 @@ session_start();
                         <div class="well">
                             <center><h1>Présentation</h1></center>
                             <h3><b>Sujet :</b> Rendre le parcours différencié de mathématiques plus  attractif à l’aide d’outil de ludification en utilisant comme support le site WIMS</h3>
-                            <h3><b>Objectif :</b> Créer une nouvelle plate-forme éducative ludique</h3>
-                            
+                            <h3><b>Objectif :</b> Créer une nouvelle plate-forme éducative ludique</h3>                            
                         </div>
                         <div class="well">
                             <center><h1>Matrice des risques</h1></center>
