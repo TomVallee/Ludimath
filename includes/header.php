@@ -12,7 +12,6 @@
                     <span class="icon-bar"></span>
                 </button>
                 <?php if (isUserConnected()) { ?>
-                    <a class="navbar-brand" href="presentation.php"><span class="glyphicon glyphicon-folder-open"></span> Présentation</a>
                     <a class="navbar-brand" href="equipe.php"><span class="glyphicon glyphicon-flag"></span> Equipe</a>
                     <a class="navbar-brand" href="cours.php"><span class="glyphicon glyphicon-book"></span> Cours</a>
                     <a class="navbar-brand" href="tops.php"><span class="glyphicon glyphicon-book"></span> Tops</a>
@@ -20,7 +19,8 @@
                     <a class="navbar-brand" href="mathematiciens.php"><span class="glyphicon glyphicon-eye-open"></span> Mathématiciens </a>
 
                     <?php if(isUserAdmin($_SESSION["id"])){ ?>
-                        <a class="navbar-brand" href="admin.php"><span class="glyphicon glyphicon-pencil"></span>Administration</a>
+                        <a class="navbar-brand" href="admin.php"><span class="glyphicon glyphicon-pencil"></span> Administration</a>
+                        <a class="navbar-brand" href="presentation_projet.php"><span class="glyphicon glyphicon-info-sign"></span> Le projet</a>
                         <?php } } ?>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse-target">
