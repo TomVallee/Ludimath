@@ -28,7 +28,7 @@ else
     <body>
         <div class="container">
             <?php require_once "includes/header.php"; ?>
-            <div>
+            <div class="well">
                 <?php AfficherTop(0); ?>
                 <section class="sec3">
                     <h3> Progression des équipes : </h3>

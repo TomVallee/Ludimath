@@ -23,11 +23,10 @@ else
 
 <body>
     <div class="container">
-        <?php require_once "includes/header.php";  ?>
-        
-            Voici la page vous présentant les mathématiciens célèbres de LudiMath. </br>
-            Vous y trouverez des anecdotes, des liens vers le cour correspondant et des liens utiles.
-            </br></br>
+        <?php require_once "includes/header.php";  ?>        
+            <br /><br />
+            <div class="well"><p>Voici la page vous présentant les mathématiciens célèbres de LudiMath.</p>
+            <p>Vous y trouverez des anecdotes, des liens vers le cour correspondant et des liens utiles.</p></div>
             <ul class="nav nav-tabs">
             <?php 
             if ($id!=1)

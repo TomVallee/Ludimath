@@ -16,17 +16,17 @@ session_start();
                 <div class="container">
                     <center>
                         <h2>Cours</h2></center>
-                    <div class="div3">
+                    <div class="well">
                         Vous pouvez ici télécharger les cours correspondant aux thèmes abordés dans le parcours différencié.
                         <br/> Ceux-ci peuvent être aussi lus sur WIMS.
-                    </div>
-                    <br/>
+                    <br/><br />
                     <ul>
                         <li><a href="cours/Fonctions.pdf">Fonctions</a></li>
                         <li><a href="cours/Suites.pdf">Suites</a></li>
                         <li><a href="cours/Complexes.pdf">Nombres complexes</a></li>
                         <li><a href="cours/Matrices.pdf">Matrices</a></li>
                     </ul>
+                    </div>
                 </div>
             </div>
 

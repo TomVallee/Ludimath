@@ -45,6 +45,13 @@ session_start();
                         </p>
                     </div>
                     <div class="well">
+                        <center><h1>Gestion de projet</h1></center>
+                        <h2>Planning</h2>
+                        <center><img alt="matriceRisque" src="images/gantt.png"></center>
+                        <h2>Matrice des risques</h2>
+                        <center><img alt="matriceRisque" src="images/matriceRisques.png"></center>
+                    </div>
+                    <div class="well">
                         <center><h1>Travail effectué</h1></center>
                         <h2>Le site WIMS</h2>
                         <p><a href="https://wims.math.cnrs.fr">WIMS</a> sert actuellement à la réalisation des exercices par les étudiants, leurs scores sont stockés dans un fichier.

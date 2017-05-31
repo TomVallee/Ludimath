@@ -11,6 +11,7 @@ session_start();
 
         <body>
             <div id="wrap">
+            <div class="well">
                 <div class="container">
                     <?php require_once "includes/header.php";  
                     ?>
@@ -37,6 +38,7 @@ session_start();
                         <?php afficherTop(5);?>
                     </div>
                 </div>
+            </div>
             </div>
         </body>
 
