@@ -103,7 +103,7 @@ function SuccesConnection($userdId)
     {ReussirSucces(29,$userdId);}
     else if (5<$heure && $heure <9)
     {ReussirSucces(30,$userdId);}
-    else if (7<$heure && $heure <10)
+    else if (7<$heure && $heure <9)
     {ReussirSucces(31,$userdId);}
     else if (2<$heure && $heure <4)
     {
