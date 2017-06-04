@@ -5,6 +5,7 @@ if (isset($_POST['login']) && isset($_POST['passwd']) && isset($_POST['lName']) 
 {
     $connec=escape($_POST['login']);
     $passwd = escape($_POST['passwd']);
+    $passwd = sha1($passwd);
     $lName=escape($_POST['lName']);
     $fName=escape($_POST['fName']);
     if($_POST['passwd']!=$_POST['passwordConf'])

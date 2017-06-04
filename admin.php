@@ -23,8 +23,11 @@ session_start();
 
 
                 $mdpOld = $_POST['mdpOld'];
+                $mdpOld = sha1($mdpOld);
                 $mdpNew= $_POST['mdpNew'];
+                $mdpNew=sha1($mdpNew);
                 $mdpTest = $_POST['mdpTest'];
+                $mdpTest = sha1($mdpTest);
                 if($mdpTest != null)
                 {
                     if($mdpOld == $mdp)
@@ -326,7 +329,7 @@ session_start();
                         </div>
                     </div>
                 </div>
-                </form>
+              
 
         </div>
         <?php } ?>

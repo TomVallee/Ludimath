@@ -59,7 +59,7 @@ insert into niveau values
 (null,100000);
 
 insert into user values
-(null,"Admin","Admin","admin","admin","admin",0,1,1,3,36);
+(null,"Admin","Admin","admin","admin","d033e22ae348aeb5660fc2140aec35850c4da997",0,1,1,3,36);
 
 
 insert into top values 
