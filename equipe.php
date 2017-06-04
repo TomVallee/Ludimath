@@ -28,33 +28,37 @@ else
     <body>
         <div class="container">
             <?php require_once "includes/header.php"; ?>
-            <div class="well">
+            <center><h2>Les équipes</h2></center>
+            <hr>
+            <div class="col-md-3">
                 <?php AfficherTop(0); ?>
+            </div>
+            <div class="well col-md-9">
                 <section class="sec3">
                     <h3> Progression des équipes : </h3>
                     <?php if ($img < 0.10) {
-                        ?> <img src="images/equipe/0%25.PNG">
+                    ?> <img src="images/equipe/0%25.PNG">
                     <?php } else if ($img < 0.20) {
-                        ?><img src="images/equipe/10%25.png">
+                    ?><img src="images/equipe/10%25.png">
                     <?php } else if ($img < 0.30) {
-                        ?><img src="images/equipe/20%25.png">
+                    ?><img src="images/equipe/20%25.png">
                     <?php } else if ($img < 0.40) {
-                        ?><img src="images/equipe/30%25.png">
+                    ?><img src="images/equipe/30%25.png">
                     <?php } else if ($img < 0.50) {
-                        ?><img src="images/equipe/40%25.png">
+                    ?><img src="images/equipe/40%25.png">
                     <?php } else if ($img < 0.60) {
-                        ?><img src="images/equipe/50%25.png">
+                    ?><img src="images/equipe/50%25.png">
                     <?php } else if ($img < 0.70) {
-                        ?><img src="images/equipe/60%25.png">
+                    ?><img src="images/equipe/60%25.png">
                     <?php } else if ($img < 0.80) {
-                        ?><img src="images/equipe/70%25.png">
+                    ?><img src="images/equipe/70%25.png">
                     <?php } else if ($img < 0.90) {
-                        ?><img src="images/equipe/80%25.png">
+                    ?><img src="images/equipe/80%25.png">
                     <?php } else if ($img < 1) {
-                        ?><img src="images/equipe/90%25.png">
+                    ?><img src="images/equipe/90%25.png">
                     <?php } else { ?><img src="images/equipe/100%25.png">
-                        <?php
-                    }
+                    <?php
+}
                     ?>
                     <center>
                         <table class="table table-hover" style="width:400px;">
@@ -66,24 +70,24 @@ else
                                 </tr>
                             </thead>
 
-<?php
-$utilisateur = getDb()->prepare('SELECT * FROM user WHERE equipe_id=? ORDER BY utilisateur_nom');
-$utilisateur->execute(array($equipe));
-while ($tuple = $utilisateur->fetch()) {
-    ?>
-                                <tr>
-                                    <td class='vert-align'>
-                                <?= $tuple['utilisateur_nom']; ?>
-                                    </td>
-                                    <td class='vert-align'>
-                                        <?= $tuple['utilisateur_prenom']; ?>
-                                    </td>
-                                    <td class='vert-align'>
-                                        <?= $tuple['utilisateur_niveau']; ?>
-                                    </td>
-                                </tr>
-                                        <?php }
-                                    ?>
+                            <?php
+                            $utilisateur = getDb()->prepare('SELECT * FROM user WHERE equipe_id=? ORDER BY utilisateur_nom');
+                            $utilisateur->execute(array($equipe));
+                            while ($tuple = $utilisateur->fetch()) {
+                            ?>
+                            <tr>
+                                <td class='vert-align'>
+                                    <?= $tuple['utilisateur_nom']; ?>
+                                </td>
+                                <td class='vert-align'>
+                                    <?= $tuple['utilisateur_prenom']; ?>
+                                </td>
+                                <td class='vert-align'>
+                                    <?= $tuple['utilisateur_niveau']; ?>
+                                </td>
+                            </tr>
+                            <?php }
+                            ?>
                         </table>
                     </center>
 
@@ -92,8 +96,8 @@ while ($tuple = $utilisateur->fetch()) {
             </div>
         </div>
 
-<?php require_once "includes/scripts.php"; ?>
-<?php require_once "includes/footer.php"; ?>
+        <?php require_once "includes/scripts.php"; ?>
+        <?php require_once "includes/footer.php"; ?>
     </body>
 
 </html>

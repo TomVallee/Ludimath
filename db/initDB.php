@@ -30,6 +30,4 @@ try{
 } catch (Exception $ex) {
     die("Erreur fatale :" . $ex->getMessage());
 }
-
-
 ?>

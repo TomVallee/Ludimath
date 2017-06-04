@@ -9,7 +9,7 @@ function getDb() {
     $db = "ludimath";
 
     return new PDO("mysql:host=$server;dbname=$db;charset=utf8", "$username", "$password",
-        array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+                   array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 }
 
 // Check if a user is connected
@@ -65,7 +65,7 @@ function AfficherNotifSucces($userId)
     //perelman
     $query="SELECT count(*) FROM reussisucces WHERE utilisateur_id=".$userId;
     $res= getDb()->query($query);        
-            $count=$res->fetch();            
+    $count=$res->fetch();            
     $query="SELECT badge_id FROM user WHERE utilisateur_id=?";    
     $prepQuery=getDB()->prepare($query);
     $prepQuery->execute(array($userId));
@@ -89,7 +89,7 @@ function AfficherNotifSucces($userId)
         $prepQuery=getDb()->prepare($query);
         $prepQuery->bindValue("id",$id['reussite_id']);
         $prepQuery->execute();
-        }
+    }
 }
 
 //SuccesConnexion
@@ -108,7 +108,7 @@ function SuccesConnection($userdId)
     else if (2<$heure && $heure <4)
     {
         if(12<$minute && $minute<16)
-            {ReussirSucces(32,$userdId);}
+        {ReussirSucces(32,$userdId);}
     }
     if (aSucces(28,$userdId)!=0 && aSucces(29,$userdId)!=0 && aSucces(30,$userdId)!=0 && aSucces(31,$userdId)!=0 && aSucces(32,$userdId)!=0)
     {ReussirSucces(33,$userdId);}
@@ -130,9 +130,9 @@ function ReussirSucces($succesId,$userId)
 //dit si l'user a réussi le succès
 function aSucces($succesId,$userId){
     $prepQuery="SELECT count(*) from reussisucces WHERE utilisateur_id = ".$userId." and succes_id=".$succesId;
-        $res= getDb()->query($prepQuery);        
-            $count=$res->fetch(); 
-        return $count['count(*)'];
+    $res= getDb()->query($prepQuery);        
+    $count=$res->fetch(); 
+    return $count['count(*)'];
 }
 
 //affiche le contenu d'un succes
@@ -149,15 +149,15 @@ function afficheContenuSucces($id)
     $prepQuery->execute(array($id));
     $res=$prepQuery->fetch();
     $badge=$res['badge_icone'];
-    
-        echo'<div class="succes">';
+
+    echo'<div class="succes">';
     echo"
     <div class ='row'><a href='changerbadge.php?badge=".$id."'>
     <img src='images/badges/".$badge."' height='70' width='70' ></a>
     <strong>".$titre."</strong></br>
     </div>
     <div class='row'>".$cond."</div>";             
-        echo'</div>';
+    echo'</div>';
 }
 //affiche un succes non obtenu
 function afficheContenuSuccesNonObtenu($id)
@@ -173,8 +173,8 @@ function afficheContenuSuccesNonObtenu($id)
     $prepQuery->execute(array($id));
     $res=$prepQuery->fetch();
     $badge=$res['badge_icone'];
-    
-        echo'<div class="successombre"> ';
+
+    echo'<div class="successombre"> ';
     echo"
     <div class ='row'>
     <img src='images/badges/".$badge."' height='70' width='70' >
@@ -214,38 +214,38 @@ function afficheSucces($utilisateur_id){
     $query ="Select succes_id from reussisucces where utilisateur_id=? order by succes_id";
     $prepQuery=getDB()->prepare($query);
     $prepQuery->execute(array($utilisateur_id));
-    
+
     foreach($prepQuery as $id){
         if($id['succes_id']!=36)
         {
-        afficheContenuSucces($id['succes_id']); 
-        echo'</br>';
+            afficheContenuSucces($id['succes_id']); 
+            echo'</br>';
         }
     }
-        
+
     $query ="SELECT succes_id,succes_cache FROM succes WHERE succes_id NOT IN (SELECT succes_id from reussisucces where utilisateur_id=?) Order By succes_cache,succes_id";
     $prepQuery=getDB()->prepare($query);
     $prepQuery->execute(array($utilisateur_id));
     foreach($prepQuery as $id){
         if($id['succes_id']!=36)
         {
-        afficheSuccesNonObtenu($id['succes_id']);  
-        echo'</br>';
+            afficheSuccesNonObtenu($id['succes_id']);  
+            echo'</br>';
         }
     }
-    
+
 }
 
 //Changer le badge de l'utilisateur
 function changerbadge($badgeid,$userId){
-     
+
     if(asucces($badgeid,$userId)!=0){
         echo "oui.";
-    $query="UPDATE user SET badge_id = :badge WHERE utilisateur_id = :user";
-    $prepQuery = getDB()->prepare($query);
-    $prepQuery->bindValue('badge', $badgeid, PDO::PARAM_INT);
-    $prepQuery->bindValue('user', $userId, PDO::PARAM_INT);
-    
+        $query="UPDATE user SET badge_id = :badge WHERE utilisateur_id = :user";
+        $prepQuery = getDB()->prepare($query);
+        $prepQuery->bindValue('badge', $badgeid, PDO::PARAM_INT);
+        $prepQuery->bindValue('user', $userId, PDO::PARAM_INT);
+
         $prepQuery->execute();
         redirect("succes.php");
     }
@@ -258,21 +258,21 @@ function changerbadge($badgeid,$userId){
 //AfficherBadge de l'utilisateur
 function Afficherbadge($utilisateurId,$taille)
 {
-    
+
     $query="SELECT badge_id FROM user WHERE utilisateur_id=?";    
     $prepQuery=getDB()->prepare($query);
     $prepQuery->execute(array($utilisateurId));
     $res=$prepQuery->fetch();    
     $badgeId=$res['badge_id'];
-    
+
     $query="SELECT * FROM badge WHERE badge_id=?";
     $prepQuery=getDB()->prepare($query);
     $prepQuery->execute(array($badgeId));
     $res=$prepQuery->fetch();
     $badge=$res['badge_icone'];
-    
+
     echo"<img src='images/badges/".$badge."' height=".$taille."width=".$taille." >";
-    
+
 }
 function AfficherBadgeId($badge_id,$taille)
 {
@@ -282,18 +282,18 @@ function AfficherBadgeId($badge_id,$taille)
         $prepQuery->execute(array($badge_id));
         $res=$prepQuery->fetch();
         $badge=$res['badge_icone'];
-    
+
         echo"<img src='images/badges/".$badge."' alt='".$badge."' height=".$taille."width=".$taille." >";
     }
     else {
         echo"<img src='images/badges/ludimath.png' height=".$taille."width=".$taille." >";
     }
-    
+
 }
 
 function Afficherbadgeprofil($badge_id,$taille)
 {
-    
+
     if ($badge_id!=""){
         $query="SELECT * FROM badge WHERE badge_id=?";
         $prepQuery=getDB()->prepare($query);
@@ -305,7 +305,7 @@ function Afficherbadgeprofil($badge_id,$taille)
     else {
         echo"<img src='images/badges/ludimath.png' height=".$taille."width=".$taille." >";
     }
-    
+
 }
 
 
@@ -313,44 +313,44 @@ function Afficherbadgeprofil($badge_id,$taille)
 function AfficherTop($idTop)
 {
     $query ="SELECT utilisateur_nom, utilisateur_prenom, badge_id FROM user "
-            . "WHERE utilisateur_id = (SELECT `top_pre` FROM `top` WHERE `top_id` =?)";    
+        . "WHERE utilisateur_id = (SELECT `top_pre` FROM `top` WHERE `top_id` =?)";    
     $prepQuery=getDB()->prepare($query);
     $prepQuery->execute(array($idTop));
     $pre=$prepQuery->fetch();
-    
+
     $query ="SELECT utilisateur_nom, utilisateur_prenom, badge_id FROM user "
-            . "WHERE utilisateur_id = (SELECT `top_deux` FROM `top` WHERE `top_id` =?)"; 
+        . "WHERE utilisateur_id = (SELECT `top_deux` FROM `top` WHERE `top_id` =?)"; 
     $prepQuery=getDB()->prepare($query);
     $prepQuery->execute(array($idTop));
     $deux=$prepQuery->fetch();
-    
+
     $query ="SELECT utilisateur_nom, utilisateur_prenom, badge_id FROM user "
-            . "WHERE utilisateur_id = (SELECT `top_trois` FROM `top` WHERE `top_id` =?)";    
+        . "WHERE utilisateur_id = (SELECT `top_trois` FROM `top` WHERE `top_id` =?)";    
     $prepQuery=getDB()->prepare($query);
     $prepQuery->execute(array($idTop));
     $trois=$prepQuery->fetch();
-    
+
     $query ="SELECT utilisateur_nom, utilisateur_prenom, badge_id FROM user "
-            . "WHERE utilisateur_id = (SELECT `top_quat` FROM `top` WHERE `top_id` =?)";    
+        . "WHERE utilisateur_id = (SELECT `top_quat` FROM `top` WHERE `top_id` =?)";    
     $prepQuery=getDB()->prepare($query);
     $prepQuery->execute(array($idTop));
     $quat=$prepQuery->fetch();
-    
+
     $query ="SELECT utilisateur_nom, utilisateur_prenom, badge_id FROM user "
-            . "WHERE utilisateur_id = (SELECT `top_cinq` FROM `top` WHERE `top_id` =?)";    
+        . "WHERE utilisateur_id = (SELECT `top_cinq` FROM `top` WHERE `top_id` =?)";    
     $prepQuery=getDB()->prepare($query);
     $prepQuery->execute(array($idTop));
     $cinq=$prepQuery->fetch();
-    
+
     $query ="Select top_nom from top where top_id =?";
     $prepQuery=getDB()->prepare($query);
     $prepQuery->execute(array($idTop));
     $titre=$prepQuery->fetch();
-    
+
     echo"<br/>";
     echo"<span class='div2'>";
     echo"<h4><center>".$titre['top_nom']."</center></h4>";
-    
+
     echo "<ul>";
     if ($pre['utilisateur_nom']!=""){
         echo'<li>';echo"<strong> 1. ";
@@ -407,7 +407,7 @@ function AfficherTop($idTop)
         echo"Places à prendre";
     }
     echo"</ul>";echo"</span>";
-    
+
 }
 
 //MAJ du top $id
@@ -474,7 +474,7 @@ function majEquipes()
         {
             $score=0;
         }
-        
+
         $prepQuery=getDb()->prepare("UPDATE equipe SET equipe_score=? WHERE equipe_id=?");
         $prepQuery->execute(array($score,$i));
     }
@@ -489,7 +489,7 @@ function majExp($etudId)
     $sum=$prepQuery->fetch()["sum(note_score)"];
     if($sum==null)
         $sum=0;
-    
+
     $query="UPDATE user SET utilisateur_experience=? WHERE utilisateur_id=?";
     $prepQuery=getDb()->prepare($query);
     $prepQuery->execute(array($sum,$etudId));
@@ -502,7 +502,7 @@ function majNiveau($etudId)
     $prepQuery=getDb()->prepare($query);
     $prepQuery->execute(array($etudId));
     $exp=$prepQuery->fetch()["utilisateur_experience"];
-    
+
     $query="SELECT max(niveau_id) FROM niveau WHERE niveau_experience<=?";
     $prepQuery=getDb()->prepare($query);
     $prepQuery->execute(array($exp));
@@ -513,11 +513,11 @@ function majNiveau($etudId)
     else{
         $niveau=1;
     }
-    
+
     $query="UPDATE user SET utilisateur_niveau=? WHERE utilisateur_id=?";
     $prepQuery=getDb()->prepare($query);
     $prepQuery->execute(array($niveau,$etudId));
-    
+
 }
 
 //Maj des succès d'un étudiant
@@ -525,31 +525,31 @@ function majSucces($etudId)
 {
     //Succès liés au niveau (1 à 3)
     majSuccesNiveau($etudId);
-    
+
     //Succès liés aux tops (4 à 9)
     majSuccesTop($etudId);
-    
-     //Succès liés aux équipes (10 à 12)
+
+    //Succès liés aux équipes (10 à 12)
     majSuccesEquipe($etudId);
-    
+
     //Succès 10/10 (13 à 14)
     majSuccesDix($etudId);
-    
+
     //Succès liés au nombre d'exercices réussis (15 à 19)
     majSuccesExercicesReussis($etudId);
-    
+
     //Succès liés au nombre d'exercices réussis à la suite (20 à 22)
     majSuccesExercicesReussisALaSuite($etudId);
-    
+
     //Succès liés au nombre d'exercices ratés à la suite (23 à 24)
     majSuccesExercicesRatesALaSuite($etudId);
-    
+
     //Succès de progression (25 à 27)
     majSuccesProgression($etudId);
-    
+
     //Succès de badges (34 à 35)
     majSuccesBadges($etudId);
-    
+
     //Succès liés aux mathématiciens (36 à 45)
     majSuccesMathematiciens($etudId);
 }
@@ -564,7 +564,7 @@ function majSuccesNiveau($etudId)
     //Succès niveau 2
     if(!aSucces(1,$etudId) && $niveau>=2)
     {
-       ReussirSucces(1,$etudId);
+        ReussirSucces(1,$etudId);
     }
     //Succès niveau 10
     if(!aSucces(2,$etudId) && $niveau>=10)
@@ -591,7 +591,7 @@ function majSuccesTop($etudId)
             ReussirSucces(4,$etudId);
         }
     }
-    
+
     //Etre premier du top général (5)
     if(!aSucces(5,$etudId))
     {
@@ -603,7 +603,7 @@ function majSuccesTop($etudId)
             ReussirSucces(5,$etudId);
         }
     }
-    
+
     //Entrer dans un top thématique (6)
     if(!aSucces(6,$etudId))
     {
@@ -619,7 +619,7 @@ function majSuccesTop($etudId)
             }
         }
     }
-    
+
     //Entrer dans tous les tops thématiques (7)
     if(!aSucces(7,$etudId))
     {
@@ -637,7 +637,7 @@ function majSuccesTop($etudId)
         if($nbTop==6)
             ReussirSucces(7,$etudId);
     }
-    
+
     //Entrer dans le top général et tous les tops thématiques (8)
     if(!aSucces(8,$etudId))
     {
@@ -655,7 +655,7 @@ function majSuccesTop($etudId)
         if($nbTop==7)
             ReussirSucces(8,$etudId);
     }
-    
+
     //Etre premier dans le top général et tous les tops thématiques (9)
     if(!aSucces(9,$etudId))
     {
@@ -682,7 +682,7 @@ function majSuccesEquipe($etudId)
     $prepQuery=getDb()->prepare($query);
     $prepQuery->execute(array($etudId));
     $scoreEquipe=intval($prepQuery->fetch()["equipe_score"]);
-    
+
     //Obtenir un score d'équipe de 500 (10)
     if(!aSucces(10,$etudId) && $scoreEquipe>500)
     {
@@ -708,13 +708,13 @@ function majSuccesDix($etudId)
     $prepQuery=getDb()->prepare($query);
     $prepQuery->execute(array($etudId));
     $nbDix=$prepQuery->fetch()["nbDix"];
-    
+
     //Obtenir 10/10 à 20 exercices(13)
     if(!aSucces(13,$etudId) && $nbDix>=20)
     {
         ReussirSucces(13,$etudId);
     }
-    
+
     //Obtenir 10/10 à tous les exercices (14)
     if(!aSucces(14,$etudId))
     {
@@ -722,7 +722,7 @@ function majSuccesDix($etudId)
         $prepQuery=getDb()->prepare($query);
         $prepQuery->execute();
         $nbExos=$prepQuery->fetch()["nbExos"];
-        
+
         if($nbDix == $nbExos)
             ReussirSucces(14,$etudId);
     }
@@ -735,31 +735,31 @@ function majSuccesExercicesReussis($etudId)
     $prepQuery=getDb()->prepare($query);
     $prepQuery->execute(array($etudId));
     $nbExosReussis=$prepQuery->fetch()["nbExos"];
-    
+
     //Réussir 10 exercices (15)
     if(!aSucces(15,$etudId) && $nbExosReussis>=10)
     {
         ReussirSucces(15,$etudId);
     }
-    
+
     //Réussir 25 exercices (16)
     if(!aSucces(16,$etudId) && $nbExosReussis>=25)
     {
         ReussirSucces(16,$etudId);
     }
-    
+
     //Réussir 100 exercices (17)
     if(!aSucces(17,$etudId) && $nbExosReussis>=100)
     {
         ReussirSucces(17,$etudId);
     }
-    
+
     //Réussir 500 exercices (18)
     if(!aSucces(18,$etudId) && $nbExosReussis>=500)
     {
         ReussirSucces(18,$etudId);
     }
-    
+
     //Réussir 1000 exercices (19)
     if(!aSucces(19,$etudId) && $nbExosReussis>=1000)
     {
@@ -773,7 +773,7 @@ function majSuccesExercicesReussisALaSuite($etudId)
     $query="SELECT note_score FROM notes WHERE utilisateur_id=? ORDER BY note_date DESC";
     $prepQuery=getDb()->prepare($query);
     $prepQuery->execute(array($etudId));
-    
+
     $resultats=array();
     while($res=$prepQuery->fetch())
     {
@@ -797,15 +797,15 @@ function majSuccesExercicesReussisALaSuite($etudId)
                 $nbReussiMax=$nbReussis;
         }
     }
-    
+
     //Réussir 5 exercices à la suite (20)
     if(!aSucces(20,$etudId) && $nbReussiMax>=5)
         ReussirSucces(20,$etudId);
-    
+
     //Réussir 10 exercices à la suite (21)
     if(!aSucces(21,$etudId) && $nbReussiMax>=10)
         ReussirSucces(21,$etudId);
-    
+
     //Réussir 20 exercices à la suite (22)
     if(!aSucces(22,$etudId) && $nbReussiMax>=20)
         ReussirSucces(22,$etudId);
@@ -817,13 +817,13 @@ function majSuccesExercicesRatesALaSuite($etudId)
     $query="SELECT note_score FROM notes WHERE utilisateur_id=? ORDER BY note_date DESC";
     $prepQuery=getDb()->prepare($query);
     $prepQuery->execute(array($etudId));
-    
+
     $resultats=array();
     while($res=$prepQuery->fetch())
     {
         array_push($resultats,$res["note_score"]);
     }
-    
+
     //Calcul du nombre maximum d'exercices ratés à la suite.
     $nbRateMax=0;
     for($i=0;$i<count($resultats)-$nbRateMax;$i++)
@@ -842,11 +842,11 @@ function majSuccesExercicesRatesALaSuite($etudId)
                 $nbRateMax=$nbRates;
         }
     }
-    
+
     //Rater 5 exercices à la suite (23)
     if(!aSucces(23,$etudId) && $nbRateMax>=5)
         ReussirSucces(23,$etudId);
-    
+
     //Rater 10 exercices à la suite (24)
     if(!aSucces(24,$etudId) && $nbRateMax>=10)
         ReussirSucces(24,$etudId);
@@ -862,36 +862,36 @@ function majSuccesProgression($etudId)
         $prepQueryCount=getDb()->prepare($queryCount);
         $prepQueryCount->execute(array($i));
         $nbExosThematique=$prepQueryCount->fetch()["nbExo"];
-        
+
         $query="SELECT COUNT(DISTINCT exercice_id) as nbExos FROM notes WHERE utilisateur_id=? AND note_score>=5 AND exercice_id IN (SELECT exercice_id FROM exercice WHERE feuille_id IN (SELECT feuille_id from feuille WHERE theme_id=?))";
         $prepQuery=getDb()->prepare($query);
         $prepQuery->execute(array($etudId,$i));
         $nbExosReussis=$prepQuery->fetch()["nbExos"];
-        
+
         if($nbExosThematique==$nbExosReussis)
         {
             $nbThematiqueFinies++;
         }
     }
-    
+
     //Reussir tous les exercices d'une thématique (25)
     if(!aSucces(25,$etudId) && $nbThematiqueFinies>=1)
     {
         ReussirSucces(25,$etudId);
     }
-    
+
     //Reussir tous les exercices de 3 thématiques (26)
     if(!aSucces(26,$etudId) && $nbThematiqueFinies>=3)
     {
         ReussirSucces(26,$etudId);
     }
-    
+
     //Reussir tous les exercices de toutes les thématiques (27)
     if(!aSucces(27,$etudId) && $nbThematiqueFinies>=6)
     {
         ReussirSucces(27,$etudId);
     }
-    
+
 }
 
 //Maj des succès de badges (34 à 35)
@@ -901,11 +901,11 @@ function majSuccesBadges($etudId)
     $prepQuery=getDb()->prepare($query);
     $prepQuery->execute(array($etudId));
     $nbBadges=$prepQuery->fetch()["nbSucces"] +1;
-    
+
     //Posséder 15 badges (34)
     if(!aSucces(34,$etudId) && $nbBadges>=15)
         ReussirSucces(34,$etudId);
-    
+
     //Posséder tous les badges (35)
     if(!aSucces(35,$etudId) && $nbBadges>=36)
         ReussirSucces(35,$etudId);
@@ -921,11 +921,11 @@ function majSuccesMathematiciens($etudId)
         $prepQuery=getDb()->prepare($query);
         $prepQuery->execute(array($etudId));
         $nbReussites=$prepQuery->fetch()["nbNote"];
-        
+
         if($nbReussites>=3)
             ReussirSucces(36,$etudId);
     }
-    
+
     //Réussir tous les exercices sur les limites (37)
     if(!aSucces(37,$etudId))
     {
@@ -933,18 +933,18 @@ function majSuccesMathematiciens($etudId)
         $prepQueryCount=getDb()->prepare($queryCount);
         $prepQueryCount->execute();
         $nbExos=$prepQueryCount->fetch()["nbExo"];
-        
+
         $query="SELECT COUNT(DISTINCT exercice_id) as nbExos FROM notes WHERE utilisateur_id=? AND note_score>=5 AND exercice_id IN (SELECT exercice_id FROM exercice WHERE feuille_id=2)";
         $prepQuery=getDb()->prepare($query);
         $prepQuery->execute(array($etudId));
         $nbExosReussis=$prepQuery->fetch()["nbExos"];
-        
+
         if($nbExos==$nbExosReussis)
         {
             ReussirSucces(37,$etudId);
         }
     }
-    
+
     //Réussir tous les exercices sur les matrices (38)
     if(!aSucces(38,$etudId))
     {
@@ -952,18 +952,18 @@ function majSuccesMathematiciens($etudId)
         $prepQueryCount=getDb()->prepare($queryCount);
         $prepQueryCount->execute();
         $nbExos=$prepQueryCount->fetch()["nbExo"];
-        
+
         $query="SELECT COUNT(DISTINCT exercice_id) as nbExos FROM notes WHERE utilisateur_id=? AND note_score>=5 AND exercice_id IN (SELECT exercice_id FROM exercice WHERE feuille_id IN (SELECT feuille_id from feuille WHERE theme_id=6))";
         $prepQuery=getDb()->prepare($query);
         $prepQuery->execute(array($etudId));
         $nbExosReussis=$prepQuery->fetch()["nbExos"];
-        
+
         if($nbExos==$nbExosReussis)
         {
             ReussirSucces(38,$etudId);
         }
     }
-    
+
     //Réussir tous les exercices sur les complexes (39)
     if(!aSucces(39,$etudId))
     {
@@ -971,18 +971,18 @@ function majSuccesMathematiciens($etudId)
         $prepQueryCount=getDb()->prepare($queryCount);
         $prepQueryCount->execute();
         $nbExos=$prepQueryCount->fetch()["nbExo"];
-        
+
         $query="SELECT COUNT(DISTINCT exercice_id) as nbExos FROM notes WHERE utilisateur_id=? AND note_score>=5 AND exercice_id IN (SELECT exercice_id FROM exercice WHERE feuille_id=13)";
         $prepQuery=getDb()->prepare($query);
         $prepQuery->execute(array($etudId));
         $nbExosReussis=$prepQuery->fetch()["nbExos"];
-        
+
         if($nbExos==$nbExosReussis)
         {
             ReussirSucces(39,$etudId);
         }
     }
-    
+
     //Réussir tous les exercices sur l'étude de fonctions (40)
     if(!aSucces(40,$etudId))
     {
@@ -990,18 +990,18 @@ function majSuccesMathematiciens($etudId)
         $prepQueryCount=getDb()->prepare($queryCount);
         $prepQueryCount->execute();
         $nbExos=$prepQueryCount->fetch()["nbExo"];
-        
+
         $query="SELECT COUNT(DISTINCT exercice_id) as nbExos FROM notes WHERE utilisateur_id=? AND note_score>=5 AND exercice_id IN (SELECT exercice_id FROM exercice WHERE feuille_id IN (SELECT feuille_id from feuille WHERE theme_id=1))";
         $prepQuery=getDb()->prepare($query);
         $prepQuery->execute(array($etudId));
         $nbExosReussis=$prepQuery->fetch()["nbExos"];
-        
+
         if($nbExos==$nbExosReussis)
         {
             ReussirSucces(40,$etudId);
         }
     }
-    
+
     //Réussir tous les exercices sur la continuité (41)
     if(!aSucces(41,$etudId))
     {
@@ -1009,18 +1009,18 @@ function majSuccesMathematiciens($etudId)
         $prepQueryCount=getDb()->prepare($queryCount);
         $prepQueryCount->execute();
         $nbExos=$prepQueryCount->fetch()["nbExo"];
-        
+
         $query="SELECT COUNT(DISTINCT exercice_id) as nbExos FROM notes WHERE utilisateur_id=? AND note_score>=5 AND exercice_id IN (SELECT exercice_id FROM exercice WHERE feuille_id=5)";
         $prepQuery=getDb()->prepare($query);
         $prepQuery->execute(array($etudId));
         $nbExosReussis=$prepQuery->fetch()["nbExos"];
-        
+
         if($nbExos==$nbExosReussis)
         {
             ReussirSucces(41,$etudId);
         }
     }
-    
+
     //Réussir 3 fois l'exercice Calcul de dérivée composée 1 (42)
     if(!aSucces(42,$etudId))
     {
@@ -1028,11 +1028,11 @@ function majSuccesMathematiciens($etudId)
         $prepQuery=getDb()->prepare($query);
         $prepQuery->execute(array($etudId));
         $nbReussites=$prepQuery->fetch()["nbNote"];
-        
+
         if($nbReussites>=3)
             ReussirSucces(42,$etudId);
     }
-    
+
     //Réussir 3 fois l'exercice Tangente à une courbe polynemiale (43)
     if(!aSucces(43,$etudId))
     {
@@ -1040,11 +1040,11 @@ function majSuccesMathematiciens($etudId)
         $prepQuery=getDb()->prepare($query);
         $prepQuery->execute(array($etudId));
         $nbReussites=$prepQuery->fetch()["nbNote"];
-        
+
         if($nbReussites>=3)
             ReussirSucces(43,$etudId);
     }
-    
+
     //Réussir tous les exercices sur les intégrales (44)
     if(!aSucces(44,$etudId))
     {
@@ -1052,12 +1052,12 @@ function majSuccesMathematiciens($etudId)
         $prepQueryCount=getDb()->prepare($queryCount);
         $prepQueryCount->execute();
         $nbExos=$prepQueryCount->fetch()["nbExo"];
-        
+
         $query="SELECT COUNT(DISTINCT exercice_id) as nbExos FROM notes WHERE utilisateur_id=? AND note_score>=5 AND exercice_id IN (SELECT exercice_id FROM exercice WHERE feuille_id IN (SELECT feuille_id from feuille WHERE theme_id=5))";
         $prepQuery=getDb()->prepare($query);
         $prepQuery->execute(array($etudId));
         $nbExosReussis=$prepQuery->fetch()["nbExos"];
-        
+
         if($nbExos==$nbExosReussis)
         {
             ReussirSucces(44,$etudId);

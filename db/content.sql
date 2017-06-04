@@ -247,7 +247,7 @@ insert into exercice values
 (null,"Fraction","",13,5);
 insert into exercice values
 (null,"Complexes","",13,6);
- 
+
  insert into exercice values
  (null,"Intégration de base","",7,1);
  insert into exercice values
@@ -264,7 +264,7 @@ insert into exercice values
  (null,"Primitive et intégrale (fraction exp ou ln)","",7,7);
  insert into exercice values
  (null,"Calcul d'une intégrale","",7,8);
- 
+
  insert into exercice values
  (null,"ABA","",9,1);
  insert into exercice values
@@ -307,7 +307,7 @@ insert into exercice values
  (null,"Multiplication diagonale 2x2","",9,20);
  insert into exercice values
  (null,"Multiplication partielle 3x3","",9,21);
- 
+
  insert into exercice values
  (null,"Trace 2x2","",10,1);
  insert into exercice values
@@ -352,7 +352,7 @@ insert into exercice values
  (null,"Permutation de lignes 3x3 II","",10,21);
  insert into exercice values
  (null,"Produits donnés","",10,22);
- 
+
  insert into exercice values
  (null,"Valeurs propres 3","",11,1);
  insert into exercice values
