@@ -99,7 +99,9 @@ function SuccesConnection($userdId)
     $minute = date("i");
     if (11<$heure && $heure <14)
     {ReussirSucces(28,$userdId);}
-    else if (20<$heure && $heure <=24)
+    else if (20<$heure)
+    {ReussirSucces(29,$userdId);}
+    else if (5>$heure)
     {ReussirSucces(29,$userdId);}
     else if (5<$heure && $heure <9)
     {ReussirSucces(30,$userdId);}
