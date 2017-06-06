@@ -60,7 +60,7 @@ if (isset($_POST['login']) && isset($_POST['passwd']) && isset($_POST['lName']) 
             $equipe=$dernierId%2 +1;
 
 
-            $query="INSERT INTO USER VALUES(null,:lname,:fname,:login,:connec,:pass,0,1,0,:equipe,36)";
+            $query="INSERT INTO user VALUES(null,:lname,:fname,:login,:connec,:pass,0,1,0,:equipe,36)";
             $prepQuery=getDb()->prepare($query);
             $prepQuery->bindValue('lname',$lName,PDO::PARAM_STR);
             $prepQuery->bindValue('fname',$fName,PDO::PARAM_STR);
