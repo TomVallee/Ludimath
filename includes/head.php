@@ -5,5 +5,7 @@
     <link rel="shortcut icon" href="logo.ico">
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <title>Ludimath</title>
+    <title>Ludimath
+        <?php if(isset($title))echo " - $title";?>
+    </title>
 </head>

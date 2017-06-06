@@ -16,20 +16,24 @@ else
 }
 ?>
 
-<!doctype html>
-<html>
+    <!doctype html>
+    <html>
+    <?php $title="Mathématiciens";?>
 
-    <?php require_once "includes/head.php"; ?>
+        <?php require_once "includes/head.php"; ?>
 
-    <body>
-        <div class="container">
-            <?php require_once "includes/header.php";  ?>        
-            <center><h2>Les mathématiciens célèbres</h2></center>
-            <hr>
-            <div class="well"><p>Voici la page vous présentant les mathématiciens célèbres de LudiMath.</p>
-                <p>Vous y trouverez des anecdotes, des liens vers le cour correspondant et des liens utiles.</p></div>
-            <ul class="nav nav-tabs">
-                <?php 
+            <body>
+                <div class="container">
+                    <?php require_once "includes/header.php";  ?>
+                        <center>
+                            <h2>Les mathématiciens célèbres</h2></center>
+                        <hr>
+                        <div class="well">
+                            <p>Voici la page vous présentant les mathématiciens célèbres de LudiMath.</p>
+                            <p>Vous y trouverez des anecdotes, des liens vers le cours correspondant et des liens utiles.</p>
+                        </div>
+                        <ul class="nav nav-tabs">
+                            <?php 
                 if ($id!=1)
                     echo'<li role="presentation"><a href="mathematiciens.php?id=1">Alkhawarizmi</a></li>';
                 else
@@ -95,7 +99,7 @@ else
                 if($id==3)
                 {
                     echo"</br>";
-                    echo"\t Né en 1777, Carl Friedrich Gauss, aussi surnommé le Prince des Mathématiques est à l'origine de nombreux théorèmes comme le pivot de Gauss. Ses travaux en mathématiques comme en physique ainsi que ses notes publiées de manière posthume sont considérés encore aujourd’hui comme fondamentaux. A 19 ans il découvre le moyen de découper un cercle en 17 parties.";
+                    echo"\t Né en 1777, Carl Friedrich Gauss, aussi surnommé le Prince des Mathématiques est à l'origine de nombreux théorèmes comme le pivot de Gauss. Ses travaux en mathématiques comme en physique ainsi que ses notes publiées de manière posthume sont considérés encore aujourd’hui comme fondamentaux. A 19 ans, il découvre le moyen de découper un cercle en 17 parties égales.";
                     echo"</br>";echo"</br>";echo"Succes associé : ";
                     afficheContenuSucces(39);
 
@@ -106,7 +110,7 @@ else
                 if($id==4)
                 {
                     echo"</br>";
-                    echo"\t Né en 1707, Leonhard Euler est vu comme le mathématicien le plus prolifique de tous les temps. C’est lui qui développe l’analyse durant le XVIII ème siècle.  Il deviendra complètement aveugle durant les 17 dernières années de sa vie, ce qui ne l'empêcha pas de continuer ses travaux en mathématique grâce à une mémoire hors norme.";
+                    echo"\t Né en 1707, Leonhard Euler est vu comme le mathématicien le plus prolifique de tous les temps. C’est lui qui développe l’analyse durant le XVIII ème siècle. Il deviendra complètement aveugle durant les 17 dernières années de sa vie, ce qui ne l'empêcha pas de continuer ses travaux en mathématiques grâce à une mémoire hors norme.";
                     echo"</br>";echo"</br>";echo"Succes associé : ";
                     afficheContenuSucces(40);
 
@@ -117,7 +121,7 @@ else
                 if($id==5)
                 {
                     echo"</br>";
-                    echo"\t Né en 1596, René Descartes est souvent perçu comme un philosophe mais il a aussi beaucoup oeuvré dans les mathématiques. Son fait d’arme principal est d’avoir numérisé la géométrie et ainsi permis de relier la géométrie à l’algèbre. Petite note amusante c’est lui qui a systématisé la notation x puissance n utilisée aujourd'hui.";
+                    echo"\t Né en 1596, René Descartes est souvent perçu comme un philosophe mais il a aussi beaucoup oeuvré dans les mathématiques. Son fait d’arme principal est d’avoir numérisé la géométrie et ainsi permis de la relier à l’algèbre. C’est aussi lui qui a systématisé la notation des puissances utilisée aujourd'hui.";
                     echo"</br>";echo"</br>";echo"Succes associé : ";
                     afficheContenuSucces(41);
                     echo"</br>";echo"</br>";echo"Cours associé :";
@@ -126,7 +130,7 @@ else
                 if($id==6)
                 {
                     echo"</br>";
-                    echo"\t Né en 1789, Augustin Louis Cauchy fut depuis son plus jeune âge reconnu comme un génie :  Lagrange dira de lui : « Vous voyez ce petit homme, eh bien ! Il nous remplacera tous tant que nous sommes de géomètres »(Si si !). Il écrira au cours de sa vie 7 livres couvrant tous les domaines mathématiques de l’époque. Il décédera malheureusement d’un rhume en 1857.";
+                    echo"\t Né en 1789, Augustin Louis Cauchy fut depuis son plus jeune âge reconnu comme un génie :  Lagrange dira de lui : « Vous voyez ce petit homme, eh bien ! Il nous remplacera tous tant que nous sommes de géomètres » (Si si !). Il écrira au cours de sa vie 7 livres couvrant tous les domaines mathématiques de l’époque. Il décédera malheureusement d’un rhume en 1857.";
                     echo"</br>";echo"</br>";echo"Succes associé : ";
                     afficheContenuSucces(42);
                     echo"</br>";echo"</br>";echo"Cours associé :";
@@ -136,7 +140,7 @@ else
                 if($id==7)
                 {
                     echo"</br>";
-                    echo"\t Né en 1736, Joseph louis Lagrange est un mathématiciens mais aussi astronome Italien (il deviendra français au cours de sa vie). A 19 ans il écrit une lettre à Euler afin de lui proposer la solution a un problème. Euler appréciait la démarche et mis à disposition tous ses travaux afin que Lagrange puisse les finir. Il découvrit également en astronomie le point de Lagrange qui se trouve être l’exact endroit ou la force gravitationnelle de la Terre est égale à celle de la Lune.";
+                    echo"\t Né en 1736, Joseph Louis Lagrange est un mathématicien mais aussi astronome italien (il deviendra français au cours de sa vie). A 19 ans, il écrit une lettre à Euler afin de lui proposer la solution à un problème. Euler appréciait la démarche et mis à disposition tous ses travaux afin que Lagrange puisse les finir. Il découvrit également en astronomie le point de Lagrange qui se trouve être l’exact endroit où la force gravitationnelle de la Terre est égale à celle de la Lune.";
                     echo"</br>";echo"</br>";echo"Succes associé : ";
                     afficheContenuSucces(43);
                     echo"</br>";echo"</br>";echo"Cours associé :";
@@ -146,7 +150,7 @@ else
                 if($id==8)
                 {
                     echo"</br>";
-                    echo"\t Né en 1623, Blaise Pascal est un mathématicien des plus célèbre. Mais il est aussi philosophe, physicien, inventeur, et plein d’autre chose. Mais ici se sont les mathématiques qui nous intéressent. C’est notamment lui le premier à avoir créé la “machine à calculer” (à 19 ans quand même). Après t'inquiètes pas il a fait des trucs avant, en effet à 16 ans il avait déjà écrit un traité de de géométrie projective. Il meurt à 39 ans après une longue maladie (et des migraines très violentes).";
+                    echo"\t Né en 1623, Blaise Pascal est un mathématicien des plus célèbre. Mais il est aussi philosophe, physicien, inventeur, et plein d’autre chose. Il est notamment le premier à avoir créé la “machine à calculer” (à 19 ans quand même). Avant cela, il avait déjà écrit (à 16 ans !) un traité de de géométrie projective. Il meurt à 39 ans après une longue maladie (et des migraines très violentes).";
                     echo"</br>";echo"</br>";echo"Succes associé : ";
                     afficheContenuSucces(44);
                     echo"</br>";echo"</br>";echo"Cours associé :";
@@ -156,7 +160,7 @@ else
                 if($id==9)
                 {
                     echo"</br>";
-                    echo"\t Né en 1826, Bernhard Riemann est un mathématiciens Allemand, que vous connaissez sans doute. Pour vous situer le personnage, au lycée il a lu en 1 semaine : La théorie des Nombres de Légende de 900 pages et dira après : “C’est un livre merveilleux; je le connais par coeur”. Il poursuit donc sa vie tout naturellement dans les maths, et mourut en 1866, sur les Rives du Lac Majeur en Italie.";
+                    echo"\t Né en 1826, Bernhard Riemann est un mathématiciens Allemand, que vous connaissez sans doute. Pour vous situer le personnage, au lycée il a lu en 1 semaine : La théorie des Nombres de Légende (un pavé de 900 pages...) et dira après : “C’est un livre merveilleux; je le connais par coeur”. Il poursuit donc sa vie tout naturellement dans les maths, et mourut en 1866, sur les rives du Lac Majeur en Italie.";
                     echo"</br>";echo"</br>";echo"Succes associé : ";
                     afficheContenuSucces(45);
                     echo"</br>";echo"</br>";echo"Cours associé :";
@@ -176,9 +180,10 @@ else
                 ?>
                 </div>
 
-        </div>
-    </body>
+                </div>
+            </body>
 
-    <?php require_once "includes/scripts.php"; ?>
-    <?php require_once "includes/footer.php"; ?>
-</html>
+            <?php require_once "includes/scripts.php"; ?>
+                <?php require_once "includes/footer.php"; ?>
+
+    </html>
