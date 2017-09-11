@@ -131,9 +131,9 @@ session_start();
                                 $resultats = file($eleve);
                                 $file = explode("/", $eleve);
                                 $login = end($file);
-                                $query = "SELECT utilisateur_id FROM user WHERE utilisateur_login=?";
+                                $query = "SELECT utilisateur_id FROM user WHERE utilisateur_login=? OR utilisateur_connec=?";
                                 $prepQuery = getDb()->prepare($query);
-                                $prepQuery->execute(array($login));
+                                $prepQuery->execute(array($login, $login));
                                 if ($etudId = $prepQuery->fetch()["utilisateur_id"]) {
                                     $query = "SELECT * FROM notes WHERE utilisateur_id=? ORDER BY note_date DESC";
                                     $prepQuery = getDb()->prepare($query);
@@ -235,6 +235,14 @@ session_start();
                     //Raz des scores d'équipes
                     $prepQuery=getDb()->prepare("UPDATE equipe SET equipe_score=0");
                     $prepQuery->execute();
+
+                    //Suppression des fichiers de résultat
+                    $param = glob("resultats/class/*");
+                    foreach ($param as $filename) {
+                        if (is_file($filename)) {
+                            unlink($filename);
+                        }
+                    }
 
                     echo "<div class='container'>";
                     echo "<div class='alert alert-success'>Remise à zéro réussie.</div>";
